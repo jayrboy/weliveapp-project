@@ -1,6 +1,5 @@
 import express from 'express'
 import { readdirSync } from 'fs'
-import product from './router/product.js'
 
 const app = express()
 

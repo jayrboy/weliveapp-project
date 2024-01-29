@@ -25,4 +25,6 @@ let productSchema = new mongoose.Schema({
 
 productSchema.plugin(paginate) //สำหรับแบ่งเพจ
 
-export let Product = mongoose.model('Product', productSchema)
+let Product = mongoose.model('Product', productSchema)
+
+export { Product }
