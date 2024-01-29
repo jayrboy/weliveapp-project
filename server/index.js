@@ -113,10 +113,9 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => {
-    console.log('MongoDB Connected!')
-    app.listen(port, host, () =>
-      console.log('Server running at http://%s:%s', host, port)
-    )
-  })
+  .then(() => console.log('MongoDB Connected!'))
   .catch((e) => console.log({ message: e.message }))
+
+app.listen(port, host, () =>
+  console.log('Server running at http://%s:%s', host, port)
+)

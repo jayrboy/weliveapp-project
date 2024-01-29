@@ -59,7 +59,7 @@ export default function DBCreate() {
           <br />
           <label className="form-label">วันที่เพิ่มสินค้า</label>
           <input
-            type="date"
+            type="Date"
             name="date_added"
             className="form-control form-control-sm"
             required

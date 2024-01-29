@@ -7,8 +7,8 @@ let productSchema = new mongoose.Schema(
     price: Number,
     detail: String,
     date_added: Date,
-  }
-  // { timestamps: true }
+  },
+  { timestamps: true }
 )
 
 productSchema.plugin(paginate) //สำหรับแบ่งเพจ
