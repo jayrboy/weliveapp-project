@@ -57,14 +57,6 @@ export default function DBCreate() {
             className="form-control form-control-sm"
           ></textarea>
           <br />
-          <label className="form-label">วันที่เพิ่มสินค้า</label>
-          <input
-            type="date"
-            name="date_added"
-            className="form-control form-control-sm"
-            required
-          />
-          <br />
           <div className="d-flex justify-content-center">
             <button className="btn btn-success btn-sm">ตกลง</button>
           </div>

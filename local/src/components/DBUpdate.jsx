@@ -79,12 +79,7 @@ export default function DBUpdate() {
                 <input type="number" name="price" ref={price} required />
               </td>
               <td>
-                <input
-                  type="date"
-                  name="date_added"
-                  ref={date_added}
-                  required
-                />
+                <input type="date" name="date_added" ref={date_added} />
               </td>
               <td>
                 <textarea
