@@ -30,7 +30,10 @@ export default function DBUpdate() {
           <thead className="table-success">
             <tr>
               <th>แก้ไข</th>
+              <th>รหัสสินค้า</th>
               <th>ชื่อสินค้า</th>
+              <th>จำนวนสินค้า</th>
+              <th>จำนวนสินค้าที่อนุญาติให้ล้นสต็อก</th>
               <th>ราคา</th>
               <th>วันที่เพิ่มสินค้า</th>
               <th>รายละเอียด</th>

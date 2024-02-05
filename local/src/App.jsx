@@ -11,8 +11,8 @@ import DBSearch from './components/DBSearch'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/db" element={<DBNav />} />
+      <Route path="/" element={<DBNav />} />
+
       <Route path="*" element={<ErrorPage />} />
       <Route path="/db/create" element={<DBCreate />} />
       <Route path="/db/read" element={<DBRead />} />

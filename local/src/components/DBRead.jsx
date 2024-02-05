@@ -23,7 +23,10 @@ export default function DBRead() {
         <thead className="table-success">
           <tr>
             <th>#</th>
+            <th>รหัสสินค้า</th>
             <th>ชื่อสินค้า</th>
+            <th>จำนวนสินค้า</th>
+            <th>จำนวนสินค้าที่อนุญาติให้ล้นสต็อก</th>
             <th>ราคา</th>
             <th>วันที่เพิ่มสินค้า</th>
             <th>รายละเอียด</th>
@@ -43,8 +46,11 @@ export default function DBRead() {
             return (
               <tr key={doc._id}>
                 <td>{i + 1}</td>
+                <td>{}</td>
                 <td>{doc.name}</td>
                 <td>{p}</td>
+                <td>{}</td>
+                <td>{}</td>
                 <td>{df}</td>
                 <td>{doc.detail}</td>
               </tr>
