@@ -105,7 +105,7 @@ export default function DBDelete() {
       <div id="data">{data}</div>
       <br />
       <div className="d-flex justify-content-center mx-auto">
-        <a href="/db" className="btn btn-light btn-sm">
+        <a href="http://localhost:5173/" className="btn btn-light btn-sm">
           หน้าหลัก
         </a>
       </div>

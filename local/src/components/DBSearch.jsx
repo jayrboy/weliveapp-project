@@ -47,10 +47,11 @@ export default function DBSearch() {
         >
           <thead className="table-dark">
             <tr style={numDocs === 0 ? hidden : null}>
-              <th>ชื่อสินค้า</th>
-              <th className="text-center">ราคา</th>
-              <th className="text-center">วันที่เพิ่มสินค้า</th>
-              <th>รายละเอียด</th>
+              <th>Name</th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>COST</th>
+              <th>DATE</th>
             </tr>
           </thead>
           <tbody>
@@ -67,9 +68,10 @@ export default function DBSearch() {
               return (
                 <tr key={doc._id}>
                   <td>{doc.name}</td>
-                  <td className="text-center">{p}</td>
-                  <td className="text-center">{df}</td>
-                  <td>{doc.detail}</td>
+                  <td>{doc.stock}</td>
+                  <td>{p}</td>
+                  <td>{doc.cost}</td>
+                  <td>{df}</td>
                 </tr>
               )
             })}
@@ -167,7 +169,7 @@ export default function DBSearch() {
         </ul>
       </div>
       <div className="d-flex justify-content-center mx-auto">
-        <a href="/db" className="btn btn-light btn-sm">
+        <a href="http://localhost:5173/" className="btn btn-light btn-sm">
           หน้าหลัก
         </a>
       </div>

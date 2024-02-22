@@ -23,13 +23,13 @@ export default function DBRead() {
         <thead className="table-success">
           <tr>
             <th>#</th>
-            <th>รหัสสินค้า</th>
-            <th>ชื่อสินค้า</th>
-            <th>จำนวนสินค้า</th>
-            <th>จำนวนสินค้าที่อนุญาติให้ล้นสต็อก</th>
-            <th>ราคา</th>
-            <th>วันที่เพิ่มสินค้า</th>
-            <th>รายละเอียด</th>
+            <th>Item ID</th>
+            <th>Name</th>
+            <th>Stock</th>
+            <th>ovStock</th>
+            <th>Price</th>
+            <th>COST</th>
+            <th>DATE</th>
           </tr>
         </thead>
         <tbody className="table-group-divider">
@@ -41,18 +41,17 @@ export default function DBRead() {
                 {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
               </>
             )
-            let p = new Intl.NumberFormat().format(doc.price)
 
             return (
               <tr key={doc._id}>
                 <td>{i + 1}</td>
-                <td>{}</td>
+                <td>{doc.barcode}</td>
                 <td>{doc.name}</td>
-                <td>{p}</td>
-                <td>{}</td>
-                <td>{}</td>
+                <td>{doc.stock}</td>
+                <td>{doc.overstock}</td>
+                <td>{doc.price}</td>
+                <td>{doc.cost}</td>
                 <td>{df}</td>
-                <td>{doc.detail}</td>
               </tr>
             )
           })}
@@ -68,7 +67,7 @@ export default function DBRead() {
       <div id="data">{data}</div>
       <br />
       <div className="d-flex justify-content-center mx-auto">
-        <a href="/db" className="btn btn-light btn-sm">
+        <a href="http://localhost:5173/" className="btn btn-light btn-sm">
           หน้าหลัก
         </a>
       </div>

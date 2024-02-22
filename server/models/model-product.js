@@ -3,9 +3,12 @@ const paginate = require('mongoose-paginate-v2') //สำหรับแบ่�
 
 let productSchema = new mongoose.Schema(
   {
+    barcode: String,
     name: String,
+    stock: Number,
+    overstock: Number,
     price: Number,
-    detail: String,
+    cost: Number,
     date_added: Date,
   },
   { timestamps: true }

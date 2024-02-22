@@ -4,7 +4,10 @@ import { useState, useRef, useEffect } from 'react'
 
 export default function DBUpdate() {
   let [data, setData] = useState('')
+  const itemid = useRef()
   const form = useRef()
+  const stock = useRef()
+  const over_stock = useRef()
   const name = useRef()
   const price = useRef()
   const date_added = useRef()
@@ -62,8 +65,13 @@ export default function DBUpdate() {
                       onClick={() => onClickRadio(doc)}
                     />
                   </td>
+                  <td>{}</td>
+                  <td>{doc.itemid}</td>
+                  <td>{}</td>
                   <td>{doc.name}</td>
                   <td>{p}</td>
+                  <td>{}</td>
+                  <td>{}</td>
                   <td>{df}</td>
                   <td>{doc.detail}</td>
                 </tr>
@@ -76,27 +84,24 @@ export default function DBUpdate() {
                 <button className="btn btn-warning btn-sm">แก้ไข</button>
               </td>
               <td>
+                <input type="text" name="id" ref={itemid} required />
+              </td>
+              <td>
                 <input type="text" name="name" ref={name} required />
               </td>
               <td>
-                <input type="number" name="price" ref={price} required />
+                <input type="number" name="stock" ref={stock} required />
               </td>
               <td>
                 <input
-                  type="date"
-                  name="date_added"
-                  ref={date_added}
+                  type="number"
+                  name="over_stock"
+                  ref={over_stock}
                   required
                 />
               </td>
               <td>
-                <textarea
-                  name="detail"
-                  cols="34"
-                  rows="3"
-                  ref={detail}
-                  required
-                ></textarea>
+                <input type="number" name="price" ref={price} required />
               </td>
             </tr>
           </tbody>
@@ -161,7 +166,7 @@ export default function DBUpdate() {
       <div id="data">{data}</div>
       <br />
       <div className="d-flex justify-content-center mx-auto">
-        <a href="/db" className="btn btn-light btn-sm">
+        <a href="http://localhost:5173/" className="btn btn-light btn-sm">
           หน้าหลัก
         </a>
       </div>
