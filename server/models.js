@@ -3,10 +3,7 @@ import paginate from 'mongoose-paginate-v2' //สำหรับแบ่งเ�
 
 //* Connection
 mongoose
-  .connect('mongodb://localhost/db1', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect('mongodb://localhost/db1')
   .then(() => {
     console.log('MongoDB Connected!')
   })

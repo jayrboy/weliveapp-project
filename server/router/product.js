@@ -5,7 +5,7 @@ const router = express.Router()
 
 //*  http://localhost:8000/api/db
 
-router.post('/db/create', async (req, res) => {
+router.post('/db/create', (req, res) => {
   let form = req.body
   let data = {
     name: form.name || '',
@@ -13,24 +13,23 @@ router.post('/db/create', async (req, res) => {
     detail: form.detail || '',
   }
 
-  await Product.create(data, (err) => {
-    if (!err) {
+  Product.create(data)
+    .then((docs) => {
       console.log('document saved')
       res.send(true)
-    } else {
-      console.log(err.message)
-      res.send(false)
-    }
-  })
+    })
+    .catch((err) => {
+      console.log(err.message).send(false)
+    })
 })
 
 router.get('/db/read', (req, res) => {
-  Product.find().exec((err, docs) => {
-    res.json(docs)
-  })
+  Product.find()
+    .exec()
+    .then((docs) => res.json(docs))
 })
 
-router.post('/db/update', async (req, res) => {
+router.post('/db/update', (req, res) => {
   let form = req.body
   let data = {
     name: form.name || '',
@@ -39,49 +38,41 @@ router.post('/db/update', async (req, res) => {
     date_added: new Date(Date.parse(form.date_added)) || new Date(),
   }
 
-  await Product.findByIdAndUpdate(form._id, data, {
-    useFindAndModify: false,
-  }).exec((err) => {
-    if (err) {
-      res.json({ error: err })
-      return
-    }
-  })
+  Product.findByIdAndUpdate(form._id, data, { useFindAndModify: false })
+    .exec()
+    .catch((err) => res.json({ message: err.message }))
 
   //หลังการอัปเดต ก็อ่านข้อมูลอีกครั้ง แล้วส่งไปแสดงผลที่ฝั่งโลคอลแทนข้อมูลเดิม
-  Product.find().exec((err, docs) => {
-    res.json(docs)
-  })
+  Product.find()
+    .exec()
+    .then((docs) => res.json(docs))
 })
 
-router.post('/db/delete', (request, response) => {
-  let _id = request.body._id
+router.post('/db/delete', (req, res) => {
+  let _id = req.body._id
 
-  Product.findByIdAndDelete(_id, { useFindAndModify: false }).exec((err) => {
-    if (err) {
-      response.json({ error: err })
-      return
-    }
-  })
+  Product.findByIdAndDelete(_id, { useFindAndModify: false })
+    .exec()
+    .catch((err) => res.json({ message: err.message }))
 
-  Product.find().exec((err, docs) => {
-    response.json(docs)
-  })
+  Product.find()
+    .exec()
+    .then((docs) => res.json(docs))
 })
 
-router.get('/db/paginate', (request, response) => {
+router.get('/db/paginate', (req, res) => {
   let options = {
-    page: request.query.page || 1, //เพจปัจจุบัน
+    page: req.query.page || 1, //เพจปัจจุบัน
     limit: 2, //แสดงผลหน้าละ 2 รายการ (ข้อมูลมีน้อย)
   }
 
   Product.paginate({}, options, (err, result) => {
-    response.json(result)
+    res.json(result)
   })
 })
 
-router.get('/db/search', (request, response) => {
-  let q = request.query.q || ''
+router.get('/db/search', (req, res) => {
+  let q = req.query.q || ''
 
   //กรณีนี้ให้กำหนด pattern ด้วย RegExp แทนการใช้ / /
   let pattern = new RegExp(q, 'ig')
@@ -92,12 +83,12 @@ router.get('/db/search', (request, response) => {
   }
 
   let options = {
-    page: request.query.page || 1, //เพจปัจจุบัน
+    page: req.query.page || 1, //เพจปัจจุบัน
     limit: 2, //แสดงผลหน้าละ 2 รายการ (ข้อมูลมีน้อย)
   }
 
   Product.paginate(conditions, options, (err, result) => {
-    response.json(result)
+    res.json(result)
   })
 })
 

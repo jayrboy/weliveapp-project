@@ -5,22 +5,18 @@ export default function DBDelete() {
   const form = useRef()
 
   useEffect(() => {
-    fetchData()
-    // eslint-disable-next-line
-  }, [])
-
-  const fetchData = () => {
     fetch('/api/db/read')
       .then((response) => response.json())
-      .then((result) => {
-        if (result.length > 0) {
-          showData(result)
+      .then((docs) => {
+        if (docs.length > 0) {
+          showData(docs)
         } else {
           setData(<>ไม่มีรายการข้อมูล</>)
         }
       })
       .catch((err) => alert(err))
-  }
+    // eslint-disable-next-line
+  }, [])
 
   const showData = (result) => {
     let r = (
@@ -96,7 +92,6 @@ export default function DBDelete() {
             showData(result)
           }
           alert('ข้อมูลถูกลบแล้ว')
-          fetchData()
         }
       })
       .catch((err) => alert(err))
