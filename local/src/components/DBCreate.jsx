@@ -62,12 +62,6 @@ export default function DBCreate() {
           </div>
         </form>
       </div>
-      <br />
-      <div className="d-flex justify-content-center">
-        <a href="/db" className="btn btn-light btn-sm">
-          กลับหน้าหลัก
-        </a>
-      </div>
     </>
   )
 }

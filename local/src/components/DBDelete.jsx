@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 export default function DBDelete() {
   let [data, setData] = useState('')
   const form = useRef()
-  const navigate = useNavigate()
 
   useEffect(() => {
+    fetchData()
+    // eslint-disable-next-line
+  }, [])
+
+  const fetchData = () => {
     fetch('/api/db/read')
       .then((response) => response.json())
       .then((result) => {
@@ -17,8 +20,7 @@ export default function DBDelete() {
         }
       })
       .catch((err) => alert(err))
-    // eslint-disable-next-line
-  }, [])
+  }
 
   const showData = (result) => {
     let r = (
@@ -66,15 +68,15 @@ export default function DBDelete() {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-
-    const fd = new FormData(form.current)
-    const fe = Object.fromEntries(fd.entries())
-    if (Object.keys(fe).length === 0) {
-      alert('ต้องเลือกรายการที่จะลบ')
+    if (!window.confirm('ยืนยันการลบรายการนี้')) {
       return
     }
 
-    if (!window.confirm('ยืนยันการลบรายการนี้')) {
+    const fd = new FormData(form.current)
+    const fe = Object.fromEntries(fd.entries())
+
+    if (Object.keys(fe).length === 0) {
+      alert('ต้องเลือกรายการที่จะลบ')
       return
     }
 
@@ -94,7 +96,7 @@ export default function DBDelete() {
             showData(result)
           }
           alert('ข้อมูลถูกลบแล้ว')
-          navigate('/db/delete')
+          fetchData()
         }
       })
       .catch((err) => alert(err))
@@ -103,12 +105,6 @@ export default function DBDelete() {
   return (
     <div style={{ margin: '20px' }}>
       <div id="data">{data}</div>
-      <br />
-      <div className="d-flex justify-content-center mx-auto">
-        <a href="/db" className="btn btn-light btn-sm">
-          หน้าหลัก
-        </a>
-      </div>
     </div>
   )
 }

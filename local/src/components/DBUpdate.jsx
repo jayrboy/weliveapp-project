@@ -151,12 +151,6 @@ export default function DBUpdate() {
   return (
     <div style={{ margin: '20px' }}>
       <div id="data">{data}</div>
-      <br />
-      <div className="d-flex justify-content-center mx-auto">
-        <a href="/db" className="btn btn-light btn-sm">
-          หน้าหลัก
-        </a>
-      </div>
     </div>
   )
 }

@@ -166,11 +166,6 @@ export default function DBSearch() {
           ))}
         </ul>
       </div>
-      <div className="d-flex justify-content-center mx-auto">
-        <a href="/db" className="btn btn-light btn-sm">
-          หน้าหลัก
-        </a>
-      </div>
     </div>
   )
 }
