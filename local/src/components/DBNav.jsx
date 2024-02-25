@@ -1,6 +1,10 @@
 import { NavLink } from 'react-router-dom'
 
 const DBNav = () => {
+  //อ่านคีย์เวิร์ดจาก URL
+  let qStr = window.location.search
+  let params = new URLSearchParams(qStr)
+
   return (
     <nav
       className="navbar navbar-expand-lg"
@@ -22,26 +26,26 @@ const DBNav = () => {
           MERN Stack - CRUD
         </a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          &nbsp;
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <NavLink to="/db/create" className="nav-link">
-              เพิ่มข้อมูล
-            </NavLink>
-            <NavLink to="/db/read" className="nav-link">
-              แสดงข้อมูล
-            </NavLink>
-            <NavLink to="/db/update" className="nav-link">
-              แก้ไขข้อมูล
-            </NavLink>
-            <NavLink to="/db/delete" className="nav-link">
-              ลบข้อมูล
-            </NavLink>
-            <NavLink to="/db/paginate" className="nav-link">
-              แบ่งเพจ
-            </NavLink>
-            <NavLink to="/db/search" className="nav-link">
-              Workshop: ค้นหาข้อมูล
-            </NavLink>
+            <a href="/" className="nav-link">
+              Home
+            </a>
           </ul>
+          &nbsp; &nbsp;
+          {/* แสดงฟอร์ม เพื่อรับคีย์เวิร์ดสำหรับการค้นหา */}
+          <form action="/db/search" method="get">
+            <div className="d-inline-block">
+              <input
+                type="text"
+                name="q"
+                defaultValue={params.get('q')}
+                className="form-control form-control-sm"
+              />
+            </div>
+            &nbsp;
+            <button className="btn btn-sm btn-primary">ค้นหา</button>
+          </form>
         </div>
       </div>
     </nav>

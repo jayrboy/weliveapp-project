@@ -1,7 +1,9 @@
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function DBCreate() {
   const form = useRef()
+  const navigate = useNavigate()
 
   const onSubmitForm = (event) => {
     event.preventDefault()
@@ -21,6 +23,7 @@ export default function DBCreate() {
         } else {
           alert('เกิดข้อผิดพลาด ข้อมูลไม่ถูกบันทึก')
         }
+        navigate('/')
       })
       .catch((e) => alert(e))
   }

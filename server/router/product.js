@@ -60,17 +60,6 @@ router.post('/db/delete', (req, res) => {
     .then((docs) => res.json(docs))
 })
 
-router.get('/db/paginate', (req, res) => {
-  let options = {
-    page: req.query.page || 1, //เพจปัจจุบัน
-    limit: 2, //แสดงผลหน้าละ 2 รายการ (ข้อมูลมีน้อย)
-  }
-
-  Product.paginate({}, options, (err, result) => {
-    res.json(result)
-  })
-})
-
 router.get('/db/search', (req, res) => {
   let q = req.query.q || ''
 
@@ -84,7 +73,7 @@ router.get('/db/search', (req, res) => {
 
   let options = {
     page: req.query.page || 1, //เพจปัจจุบัน
-    limit: 2, //แสดงผลหน้าละ 2 รายการ (ข้อมูลมีน้อย)
+    limit: 3, //แสดงผลหน้าละ 2 รายการ (ข้อมูลมีน้อย)
   }
 
   Product.paginate(conditions, options, (err, result) => {
