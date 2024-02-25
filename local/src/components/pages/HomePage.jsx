@@ -27,19 +27,35 @@ export default function HomePage() {
     }
 
     let r = (
-      <div style={{ maxWidth: '100%' }}>
-        <div className="mb-2">
-          <Link to="/db/create">
-            <button className="btn btn-primary btn-sm">เพิ่ม</button>
-          </Link>
-          &nbsp;
-          <Link to="/db/update">
-            <button className="btn btn-warning btn-sm">แก้ไข</button>
-          </Link>
-          &nbsp;
-          <Link to="/db/delete">
-            <button className="btn btn-danger btn-sm">ลบ</button>
-          </Link>
+      <div className="container" style={{ maxWidth: '100%' }}>
+        <div className="row">
+          <div className="col-sm-6 mb-2 d-flex">
+            <form action="/db/search" method="get" className="d-flex">
+              <div className="d-inline-block">
+                <input
+                  type="text"
+                  name="q"
+                  defaultValue={params.get('q')}
+                  className="form-control form-control-sm"
+                />
+              </div>
+              &nbsp;
+              <button className="btn btn-sm btn-primary">ค้นหา</button>
+            </form>
+          </div>
+          <div className="col-sm-6">
+            <Link to="/db/create">
+              <button className="btn btn-primary btn-sm">เพิ่ม</button>
+            </Link>
+            &nbsp;
+            <Link to="/db/update">
+              <button className="btn btn-warning btn-sm">แก้ไข</button>
+            </Link>
+            &nbsp;
+            <Link to="/db/delete">
+              <button className="btn btn-danger btn-sm">ลบ</button>
+            </Link>
+          </div>
         </div>
 
         <table
@@ -48,14 +64,18 @@ export default function HomePage() {
         >
           <thead className="table-dark">
             <tr style={numDocs === 0 ? hidden : null}>
+              <th>#</th>
+              <th>รหัสสินค้า</th>
               <th>ชื่อสินค้า</th>
-              <th className="text-center">ราคา</th>
-              <th className="text-center">วันที่เพิ่มสินค้า</th>
-              <th>รายละเอียด</th>
+              <th>ราคา</th>
+              <th>ราคาต้นทุน</th>
+              <th>จำนวนสินค้า</th>
+              <th>สินค้าเกินจำนวน</th>
+              <th>วันที่เพิ่มสินค้า</th>
             </tr>
           </thead>
           <tbody>
-            {result.docs.map((doc) => {
+            {result.docs.map((doc, i) => {
               //จัดรูปแบบวันเดือนปี ที่สามารถเข้าใจได้
               let dt = new Date(Date.parse(doc.date_added))
               let df = (
@@ -64,13 +84,18 @@ export default function HomePage() {
                 </>
               )
               let p = new Intl.NumberFormat().format(doc.price)
+              let c = new Intl.NumberFormat().format(doc.cost)
 
               return (
                 <tr key={doc._id}>
+                  <td>{i + 1}</td>
+                  <td>{doc.itemid}</td>
                   <td>{doc.name}</td>
-                  <td className="text-center">{p}</td>
-                  <td className="text-center">{df}</td>
-                  <td>{doc.detail}</td>
+                  <td>{p}</td>
+                  <td>{c}</td>
+                  <td>{doc.stock}</td>
+                  <td>{doc.over_stock}</td>
+                  <td>{df}</td>
                 </tr>
               )
             })}

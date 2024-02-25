@@ -8,9 +8,14 @@ const router = express.Router()
 router.post('/db/create', (req, res) => {
   let form = req.body
   let data = {
+    itemid: form.itemid || '',
     name: form.name || '',
     price: form.price || 0,
     detail: form.detail || '',
+    cost: form.cost || 0,
+    stock: form.stock || 0,
+    over_stock: form.over_stock || 0,
+    date_added: new Date(Date.parse(form.date_added)) || new Date(),
   }
 
   Product.create(data)
@@ -32,12 +37,15 @@ router.get('/db/read', (req, res) => {
 router.post('/db/update', (req, res) => {
   let form = req.body
   let data = {
+    itemid: form.itemid || '',
     name: form.name || '',
     price: form.price || 0,
     detail: form.detail || '',
+    cost: form.cost || 0,
+    stock: form.stock || 0,
+    over_stock: form.over_stock || 0,
     date_added: new Date(Date.parse(form.date_added)) || new Date(),
   }
-
   Product.findByIdAndUpdate(form._id, data, { useFindAndModify: false })
     .exec()
     .catch((err) => res.json({ message: err.message }))

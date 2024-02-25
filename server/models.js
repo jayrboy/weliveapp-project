@@ -11,13 +11,14 @@ mongoose
 
 //* Product Model
 let productSchema = new mongoose.Schema({
+  itemid: String,
   name: String,
   price: Number,
   detail: String,
-  date_added: {
-    type: Date,
-    default: Date.now(),
-  },
+  cost: Number,
+  stock: Number,
+  over_stock: Number,
+  date_added: Date,
 })
 
 productSchema.plugin(paginate) //สำหรับแบ่งเพจ
