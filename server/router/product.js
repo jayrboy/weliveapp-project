@@ -48,12 +48,13 @@ router.post('/db/update', (req, res) => {
   }
   Product.findByIdAndUpdate(form._id, data, { useFindAndModify: false })
     .exec()
+    .then(() => {
+      //หลังการอัปเดต ก็อ่านข้อมูลอีกครั้ง แล้วส่งไปแสดงผลที่ฝั่งโลคอลแทนข้อมูลเดิม
+      Product.find()
+        .exec()
+        .then((docs) => res.json(docs))
+    })
     .catch((err) => res.json({ message: err.message }))
-
-  //หลังการอัปเดต ก็อ่านข้อมูลอีกครั้ง แล้วส่งไปแสดงผลที่ฝั่งโลคอลแทนข้อมูลเดิม
-  Product.find()
-    .exec()
-    .then((docs) => res.json(docs))
 })
 
 router.post('/db/delete', (req, res) => {
@@ -61,11 +62,12 @@ router.post('/db/delete', (req, res) => {
 
   Product.findByIdAndDelete(_id, { useFindAndModify: false })
     .exec()
+    .then(() => {
+      Product.find()
+        .exec()
+        .then((docs) => res.json(docs))
+    })
     .catch((err) => res.json({ message: err.message }))
-
-  Product.find()
-    .exec()
-    .then((docs) => res.json(docs))
 })
 
 router.get('/db/search', (req, res) => {
