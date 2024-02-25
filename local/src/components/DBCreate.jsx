@@ -35,6 +35,14 @@ export default function DBCreate() {
         style={{ width: '400px', background: '#fff' }}
       >
         <form onSubmit={onSubmitForm} ref={form}>
+          <label className="form-label">รหัสสินค้า</label>
+          <input
+            type="text"
+            name="itemid"
+            className="form-control form-control-sm"
+            required
+          />
+          <br />
           <label className="form-label">ชื่อสินค้า</label>
           <input
             type="text"
@@ -43,6 +51,7 @@ export default function DBCreate() {
             required
           />
           <br />
+
           <label className="form-label">ราคา</label>
           <input
             type="number"
@@ -52,18 +61,55 @@ export default function DBCreate() {
             required
           />
           <br />
-          <label className="form-label">รายละเอียดสินค้า</label>
-          <textarea
-            name="detail"
-            cols="30"
-            rows="3"
+
+          <label className="form-label">ราคาต้นทุน</label>
+          <input
+            type="number"
+            name="cost"
+            min="0"
             className="form-control form-control-sm"
-          ></textarea>
+            required
+          />
           <br />
+
+          <label className="form-label">จำนวนสินค้า</label>
+          <input
+            type="number"
+            name="stock"
+            min="0"
+            className="form-control form-control-sm"
+            required
+          />
+          <br />
+
+          <label className="form-label">จำนวนสินค้าที่อนุญาติให้ล้นสต็อก</label>
+          <input
+            type="number"
+            name="over_stock"
+            min="0"
+            className="form-control form-control-sm"
+          />
+          <br />
+
+          <label className="form-label">วันที่เพิ่มสินค้า</label>
+          <input
+            type="Date"
+            name="date_added"
+            className="form-control form-control-sm"
+            required
+          />
+          <br />
+
           <div className="d-flex justify-content-center">
             <button className="btn btn-success btn-sm">ตกลง</button>
           </div>
         </form>
+      </div>
+      <br />
+      <div className="d-flex justify-content-center">
+        <a href="/" className="btn btn-light btn-sm">
+          กลับหน้าหลัก
+        </a>
       </div>
     </>
   )

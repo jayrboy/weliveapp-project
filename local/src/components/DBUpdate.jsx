@@ -5,10 +5,13 @@ import { useState, useRef, useEffect } from 'react'
 export default function DBUpdate() {
   let [data, setData] = useState('')
   const form = useRef()
+  const itemid = useRef()
   const name = useRef()
+  const cost = useRef()
   const price = useRef()
+  const stock = useRef()
+  const over_stock = useRef()
   const date_added = useRef()
-  const detail = useRef()
 
   useEffect(() => {
     fetch('/api/db/read') //อ่านข้อมูลมาแสดงผล
@@ -29,11 +32,14 @@ export default function DBUpdate() {
         <table className="table table-striped">
           <thead className="table-success">
             <tr>
-              <th>แก้ไข</th>
-              <th>ชื่อสินค้า</th>
-              <th>ราคา</th>
-              <th>วันที่เพิ่มสินค้า</th>
-              <th>รายละเอียด</th>
+              <th className="text-center">แก้ไข</th>
+              <th className="text-center">รหัสสินค้า</th>
+              <th className="text-center">ชื่อสินค้า</th>
+              <th className="text-center">ราคา</th>
+              <th className="text-center">ราคาต้นทุน</th>
+              <th className="text-center">จำนวนสินค้า</th>
+              <th className="text-center">สินค้าเกินจำนวน</th>
+              <th className="text-center">วันที่เพิ่มสินค้า</th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
@@ -45,7 +51,7 @@ export default function DBUpdate() {
                 </>
               )
               let p = new Intl.NumberFormat().format(doc.price)
-
+              let c = new Intl.NumberFormat().format(doc.cost)
               return (
                 <tr key={doc._id}>
                   {/* เมื่อคลิก radio บนรายการใด เราก็แนบ document ของรายการนั้น
@@ -59,10 +65,14 @@ export default function DBUpdate() {
                       onClick={() => onClickRadio(doc)}
                     />
                   </td>
-                  <td>{doc.name}</td>
-                  <td>{p}</td>
-                  <td>{df}</td>
-                  <td>{doc.detail}</td>
+
+                  <td className="text-center">{doc.itemid}</td>
+                  <td className="text-center">{doc.name}</td>
+                  <td className="text-center">{p}</td>
+                  <td className="text-center">{c}</td>
+                  <td className="text-center">{doc.stock}</td>
+                  <td className="text-center">{doc.over_stock}</td>
+                  <td className="text-center">{df}</td>
                 </tr>
               )
             })}
@@ -73,23 +83,68 @@ export default function DBUpdate() {
                 <button className="btn btn-warning btn-sm">แก้ไข</button>
               </td>
               <td>
-                <input type="text" name="name" ref={name} required />
-              </td>
-              <td>
-                <input type="number" name="price" ref={price} required />
-              </td>
-              <td>
-                <input type="date" name="date_added" ref={date_added} />
-              </td>
-              <td>
-                <textarea
-                  name="detail"
-                  cols="34"
-                  rows="3"
-                  ref={detail}
+                <input
+                  type="text"
+                  name="itemid"
+                  placeholder="รหัสสินค้า "
+                  ref={itemid}
                   required
-                ></textarea>
+                />
               </td>
+              <td>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="ชื่อสินค้า"
+                  ref={name}
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  name="price"
+                  placeholder="ราคาสินค้า"
+                  ref={price}
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  name="cost"
+                  placeholder="ราคาต้นทุน"
+                  ref={cost}
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  name="stock"
+                  placeholder="จำนวนสินค้า"
+                  ref={stock}
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  name="over_stock"
+                  placeholder="จำนวนสินค้าล้นสต็อก"
+                  ref={over_stock}
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="date"
+                  name="date_added"
+                  ref={date_added}
+                  required
+                />
+              </td>
+              <td></td>
             </tr>
           </tbody>
         </table>
@@ -145,12 +200,17 @@ export default function DBUpdate() {
     let d = dt.getDate()
     d = d >= 10 ? d : '0' + d
     date_added.current.value = `${y}-${m}-${d}`
-    detail.current.value = doc.detail
   }
 
   return (
     <div style={{ margin: '20px' }}>
       <div id="data">{data}</div>
+      <br />
+      <div className="d-flex justify-content-center mx-auto">
+        <a href="http://localhost:5173/" className="btn btn-light btn-sm">
+          หน้าหลัก
+        </a>
+      </div>
     </div>
   )
 }

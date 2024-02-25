@@ -1,5 +1,3 @@
-import { NavLink } from 'react-router-dom'
-
 const DBNav = () => {
   //อ่านคีย์เวิร์ดจาก URL
   let qStr = window.location.search
@@ -33,19 +31,7 @@ const DBNav = () => {
             </a>
           </ul>
           &nbsp; &nbsp;
-          {/* แสดงฟอร์ม เพื่อรับคีย์เวิร์ดสำหรับการค้นหา */}
-          <form action="/db/search" method="get">
-            <div className="d-inline-block">
-              <input
-                type="text"
-                name="q"
-                defaultValue={params.get('q')}
-                className="form-control form-control-sm"
-              />
-            </div>
-            &nbsp;
-            <button className="btn btn-sm btn-primary">ค้นหา</button>
-          </form>
+          
         </div>
       </div>
     </nav>

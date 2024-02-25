@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function DBDelete() {
   let [data, setData] = useState('')
   const form = useRef()
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch('/api/db/read')
@@ -24,31 +26,38 @@ export default function DBDelete() {
         <table className="table table-striped">
           <thead className="table-success">
             <tr>
-              <th>ลบ</th>
-              <th>ชื่อสินค้า</th>
-              <th>ราคา</th>
-              <th>วันที่เพิ่มสินค้า</th>
-              <th>รายละเอียด</th>
+              <th className="text-center">ลบ</th>
+              <th className="text-center">รหัสสินค้า</th>
+              <th className="text-center">ชื่อสินค้า</th>
+              <th className="text-center">ราคา</th>
+              <th className="text-center">ราคาต้นทุน</th>
+              <th className="text-center">จำนวนสินค้า</th>
+              <th className="text-center">สินค้าเกินจำนวน</th>
+              <th className="text-center">วันที่เพิ่มสินค้า</th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
             {result.map((doc) => {
               let dt = new Date(Date.parse(doc.date_added))
-              let dmy = (
+              let df = (
                 <>
                   {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
                 </>
               )
               let p = new Intl.NumberFormat().format(doc.price)
+              let c = new Intl.NumberFormat().format(doc.cost)
               return (
                 <tr key={doc._id}>
-                  <td>
+                  <td className="text-center">
                     <input type="radio" name="_id" value={doc._id} />
                   </td>
-                  <td>{doc.name}</td>
-                  <td>{p}</td>
-                  <td>{dmy}</td>
-                  <td>{doc.detail}</td>
+                  <td className="text-center">{doc.itemid}</td>
+                  <td className="text-center">{doc.name}</td>
+                  <td className="text-center">{p}</td>
+                  <td className="text-center">{c}</td>
+                  <td className="text-center">{doc.stock}</td>
+                  <td className="text-center">{doc.over_stock}</td>
+                  <td className="text-center">{df}</td>
                 </tr>
               )
             })}
@@ -93,6 +102,7 @@ export default function DBDelete() {
           }
           alert('ข้อมูลถูกลบแล้ว')
         }
+        navigate('/db/delete')
       })
       .catch((err) => alert(err))
   }
@@ -100,6 +110,12 @@ export default function DBDelete() {
   return (
     <div style={{ margin: '20px' }}>
       <div id="data">{data}</div>
+      <br />
+      <div className="d-flex justify-content-center mx-auto">
+        <a href="http://localhost:5173/" className="btn btn-light btn-sm">
+          หน้าหลัก
+        </a>
+      </div>
     </div>
   )
 }
