@@ -88,7 +88,6 @@ export default function DBUpdate() {
                   name="itemid"
                   placeholder="รหัสสินค้า "
                   ref={itemid}
-                  required
                 />
               </td>
               <td>
@@ -97,7 +96,6 @@ export default function DBUpdate() {
                   name="name"
                   placeholder="ชื่อสินค้า"
                   ref={name}
-                  required
                 />
               </td>
               <td>
@@ -106,7 +104,6 @@ export default function DBUpdate() {
                   name="price"
                   placeholder="ราคาสินค้า"
                   ref={price}
-                  required
                 />
               </td>
               <td>
@@ -115,7 +112,6 @@ export default function DBUpdate() {
                   name="cost"
                   placeholder="ราคาต้นทุน"
                   ref={cost}
-                  required
                 />
               </td>
               <td>
@@ -124,7 +120,6 @@ export default function DBUpdate() {
                   name="stock"
                   placeholder="จำนวนสินค้า"
                   ref={stock}
-                  required
                 />
               </td>
               <td>
@@ -133,16 +128,10 @@ export default function DBUpdate() {
                   name="over_stock"
                   placeholder="จำนวนสินค้าล้นสต็อก"
                   ref={over_stock}
-                  required
                 />
               </td>
               <td>
-                <input
-                  type="date"
-                  name="date_added"
-                  ref={date_added}
-                  required
-                />
+                <input type="date" name="date_added" ref={date_added} />
               </td>
               <td></td>
             </tr>
@@ -188,8 +177,12 @@ export default function DBUpdate() {
   //เมื่อ radio บนรายการใดถูกคลิก (ในที่นี้เลือกใช้ click แทน change)
   //ก็อ่านข้อมูลในแต่ละฟิลต์จาก document ที่ผ่านเข้ามา แล้วเติมลงในฟอร์ม
   const onClickRadio = (doc) => {
+    itemid.current.value = doc.itemid
     name.current.value = doc.name
     price.current.value = doc.price
+    cost.current.value = doc.cost
+    stock.current.value = doc.stock
+    over_stock.current.value = doc.over_stock
 
     let dt = new Date(Date.parse(doc.date_added))
     let y = dt.getFullYear()

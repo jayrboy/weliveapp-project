@@ -1,3 +1,66 @@
 body {
   background-color: #fffafa;
 }
+
+.card {
+  background-color: blanchedalmond;
+}
+
+.alert {
+  color: red;
+}
+
+.plus {
+  border: none;
+  background: rgb(15, 151, 22);
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.delete {
+  border: none;
+  background: rgb(255, 0, 0);
+  color: white;
+  border-radius: 20px;
+  margin-left: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 15px;
+}
+
+ul {
+  cursor: pointer;
+}
+
+.bh {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.bh :hover {
+  box-shadow: rgba(0, 255, 21, 0.16) 0px 1px 4px;
+}
+
+.cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: orange;
+  margin: 5px auto;
+  padding: 5px;
+}
+
+.cart:hover {
+  box-shadow: rgb(0, 0, 0) 3px 3px 3px;
+}

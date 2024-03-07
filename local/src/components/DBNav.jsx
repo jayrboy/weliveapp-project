@@ -1,3 +1,7 @@
+import { FaCartShopping } from 'react-icons/fa6'
+import '../index.css'
+import { BsFillSendArrowUpFill } from 'react-icons/bs'
+import { FaHome } from 'react-icons/fa'
 const DBNav = () => {
   //อ่านคีย์เวิร์ดจาก URL
   let qStr = window.location.search
@@ -27,11 +31,20 @@ const DBNav = () => {
           &nbsp;
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <a href="/" className="nav-link">
-              Home
+              <FaHome />
+            </a>
+          </ul>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <a href="/db/order" className="nav-link">
+              <BsFillSendArrowUpFill />
+            </a>
+          </ul>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <a href="/db/cart" className="cart">
+              <FaCartShopping />
             </a>
           </ul>
           &nbsp; &nbsp;
-          
         </div>
       </div>
     </nav>

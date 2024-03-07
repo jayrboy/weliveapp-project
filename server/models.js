@@ -26,3 +26,15 @@ productSchema.plugin(paginate) //สำหรับแบ่งเพจ
 let Product = mongoose.model('Product', productSchema)
 
 export { Product }
+
+let orderSchema = new mongoose.Schema({
+  UserName: String,
+  comment: String,
+  date_added: Date,
+})
+
+orderSchema.plugin(paginate) //สำหรับแบ่งเพจ
+
+let Order = mongoose.model('Order', orderSchema)
+
+export { Order }
