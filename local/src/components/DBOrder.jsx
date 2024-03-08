@@ -48,7 +48,6 @@ export default function DBOrder() {
             type="text"
             name="comment"
             className="form-control form-control-sm"
-            required
           />
           <br />
           <label className="form-label">วันที่สั่งสิ่งค้า</label>

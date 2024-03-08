@@ -14,7 +14,6 @@ let productSchema = new mongoose.Schema({
   itemid: String,
   name: String,
   price: Number,
-  detail: String,
   cost: Number,
   stock: Number,
   over_stock: Number,
@@ -26,15 +25,3 @@ productSchema.plugin(paginate) //สำหรับแบ่งเพจ
 let Product = mongoose.model('Product', productSchema)
 
 export { Product }
-
-let orderSchema = new mongoose.Schema({
-  UserName: String,
-  comment: String,
-  date_added: Date,
-})
-
-orderSchema.plugin(paginate) //สำหรับแบ่งเพจ
-
-let Order = mongoose.model('Order', orderSchema)
-
-export { Order }

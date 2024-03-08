@@ -2,10 +2,10 @@ import { FaCartShopping } from 'react-icons/fa6'
 import '../index.css'
 import { BsFillSendArrowUpFill } from 'react-icons/bs'
 import { FaHome } from 'react-icons/fa'
+import { CiBarcode } from 'react-icons/ci'
+import { FaFacebookF } from 'react-icons/fa'
 const DBNav = () => {
   //อ่านคีย์เวิร์ดจาก URL
-  let qStr = window.location.search
-  let params = new URLSearchParams(qStr)
 
   return (
     <nav
@@ -40,8 +40,16 @@ const DBNav = () => {
             </a>
           </ul>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <a href="/db/cart" className="cart">
+            <a href="/db/cfcode" className="nav-link">
+              <CiBarcode /> รายการรหัส CF
+            </a>
+          </ul>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <a href="/db/cart" className="nav-link">
               <FaCartShopping />
+            </a>
+            <a href="/db/register" className="nav-link ">
+              SIGN IN
             </a>
           </ul>
           &nbsp; &nbsp;

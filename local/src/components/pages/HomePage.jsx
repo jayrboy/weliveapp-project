@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
+import './home.css'
 export default function HomePage() {
   let [data, setData] = useState('')
   let [page, setPage] = useState([])
@@ -35,6 +35,7 @@ export default function HomePage() {
                 <input
                   type="text"
                   name="q"
+                  placeholder="พิมพ์คำที่จะค้นหา"
                   defaultValue={params.get('q')}
                   className="form-control form-control-sm"
                 />
@@ -65,7 +66,7 @@ export default function HomePage() {
           <thead className="table-dark">
             <tr style={numDocs === 0 ? hidden : null}>
               <th>#</th>
-              <th>รหัสสินค้า</th>
+              <th>CF CODE</th>
               <th>ชื่อสินค้า</th>
               <th>ราคา</th>
               <th>ราคาต้นทุน</th>

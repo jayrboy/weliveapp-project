@@ -35,9 +35,10 @@ export default function DBCreate() {
         style={{ width: '400px', background: '#fff' }}
       >
         <form onSubmit={onSubmitForm} ref={form}>
-          <label className="form-label">รหัสสินค้า</label>
+          <label className="form-label">รหัส CF</label>
           <input
             type="text"
+            placeholder="A01"
             name="itemid"
             className="form-control form-control-sm"
             required
@@ -47,6 +48,7 @@ export default function DBCreate() {
           <input
             type="text"
             name="name"
+            placeholder="หนังสือเรียนวิชา React"
             className="form-control form-control-sm"
             required
           />
@@ -56,10 +58,12 @@ export default function DBCreate() {
           <input
             type="number"
             name="price"
+            placeholder="199"
             min="0"
             className="form-control form-control-sm"
             required
           />
+
           <br />
 
           <label className="form-label">ราคาต้นทุน</label>
@@ -67,6 +71,7 @@ export default function DBCreate() {
             type="number"
             name="cost"
             min="0"
+            placeholder="99"
             className="form-control form-control-sm"
             required
           />
@@ -76,6 +81,7 @@ export default function DBCreate() {
           <input
             type="number"
             name="stock"
+            placeholder="10"
             min="0"
             className="form-control form-control-sm"
             required
@@ -86,6 +92,7 @@ export default function DBCreate() {
           <input
             type="number"
             name="over_stock"
+            placeholder="5"
             min="0"
             className="form-control form-control-sm"
           />

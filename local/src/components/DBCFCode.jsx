@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FaBoxOpen } from 'react-icons/fa'
 
-export default function DBCart() {
+import { MdEdit, MdDelete } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import '../cfcode.css'
+export default function DBCFCode() {
   let [data, setData] = useState('')
   const form = useRef()
   const navigate = useNavigate()
@@ -24,37 +28,70 @@ export default function DBCart() {
     let r = (
       <form onSubmit={onSubmitForm} ref={form}>
         <table className="table table-striped">
-          <thead className="table-success">
+          <thead>
             <tr>
-              <th className="text-center">รหัสไอดีผู้ใช้</th>
-              <th className="text-center">โค้ดสินค้า</th>
-              <th className="text-center">ความคิดเห็น</th>
-              <th className="text-center">วันที่และเวลา</th>
+              <th className="text-center">
+                <input type="checkbox" />
+              </th>
+              <th className="text-center">สถานะ</th>
+              <th className="text-center">CF CODE</th>
+              <th className="text-center">สินค้าที่มี</th>
+              <th className="text-center">รายละเอียด</th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
             {result.map((doc) => {
-              let dt = new Date(Date.parse(doc.date_added))
-              let df = (
-                <>
-                  {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
-                </>
-              )
               let p = new Intl.NumberFormat().format(doc.price)
-             
               return (
                 <tr key={doc._id}>
-                  <td className="text-center">{doc.itemid}</td>
-                  <td className="text-center">{doc.name}</td>
-                  <td className="text-center">{p}</td>
-                  <td className="text-center">{df}</td>
+                  <td className="text-center ">
+                    <input
+                      type="checkbox"
+                      className="toggle-switch-checkbox"
+                      name="_id"
+                      value={doc._id}
+                    />
+                  </td>
+                  <td className="text-center">
+                    <button className="btn btn-sm btn-success">เปิด</button>
+                  </td>
+                  <td className="text-center">
+                    <div className="cardcode">A42</div>
+                  </td>
+
+                  <td className="text-center">
+                    <div className="card">
+                      <FaBoxOpen />
+                      {doc.stock}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="carddocument">
+                      <p>{doc.name}</p>
+                      <p>฿{p}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="btn btn-sm btn-warning">
+                      <MdEdit />
+                    </div>
+
+                    <div className="btn btn-sm btn-danger m-2">
+                      <MdDelete />
+                    </div>
+                  </td>
                 </tr>
               )
             })}
           </tbody>
         </table>
         <br />
-        <button className="btn btn-danger btn-sm">ลบรายการที่เลือก</button>
+        <div className="text-center ">
+          <Link to="/db/create">
+            <button className="btn btn-primary btn-sm">เพิ่มโค้ดการขาย</button>
+          </Link>
+          <button className="btn btn-danger btn-sm  m-2">ลบโค้ดที่เลือก</button>
+        </div>
       </form>
     )
 
