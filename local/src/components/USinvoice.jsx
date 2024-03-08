@@ -38,11 +38,11 @@ export default function USinvoice() {
           <input required type="radio" className=" ms-5"></input>
           <span> Flash </span>
           <input required type="radio" className=" ms-5"></input>
-          <span > J&B </span>
+          <span> J&B </span>
           <input required type="radio" className=" ms-5"></input>{' '}
-          <span > Shoppee </span>
+          <span> Shoppee </span>
           <input required type="radio" className=" ms-5"></input>
-          <span > EMS THAI </span>
+          <span> EMS THAI </span>
           <br />
           <label className="mt-3">
             <span className=" text-danger p-1">
