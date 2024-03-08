@@ -20,7 +20,7 @@ router.post('/db/create', (req, res) => {
 
   Product.create(data)
     .then((docs) => {
-      console.log('document saved')
+      console.log('Document saved')
       res.send(true)
     })
     .catch((err) => {

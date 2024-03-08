@@ -14,7 +14,6 @@ let productSchema = new mongoose.Schema({
   itemid: String,
   name: String,
   price: Number,
-  detail: String,
   cost: Number,
   stock: Number,
   over_stock: Number,

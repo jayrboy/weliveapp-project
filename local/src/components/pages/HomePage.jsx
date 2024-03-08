@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
+import './home.css'
 export default function HomePage() {
   let [data, setData] = useState('')
   let [page, setPage] = useState([])
@@ -35,6 +35,7 @@ export default function HomePage() {
                 <input
                   type="text"
                   name="q"
+                  placeholder="พิมพ์คำที่จะค้นหา"
                   defaultValue={params.get('q')}
                   className="form-control form-control-sm"
                 />
@@ -45,15 +46,15 @@ export default function HomePage() {
           </div>
           <div className="col-sm-6">
             <Link to="/db/create">
-              <button className="btn btn-primary btn-sm">เพิ่ม</button>
+              <button className="btn btn-primary btn-sm">Add</button>
             </Link>
             &nbsp;
             <Link to="/db/update">
-              <button className="btn btn-warning btn-sm">แก้ไข</button>
+              <button className="btn btn-warning btn-sm">EDIT</button>
             </Link>
             &nbsp;
             <Link to="/db/delete">
-              <button className="btn btn-danger btn-sm">ลบ</button>
+              <button className="btn btn-danger btn-sm">Delete</button>
             </Link>
           </div>
         </div>
@@ -65,7 +66,7 @@ export default function HomePage() {
           <thead className="table-dark">
             <tr style={numDocs === 0 ? hidden : null}>
               <th>#</th>
-              <th>รหัสสินค้า</th>
+              <th>CF CODE</th>
               <th>ชื่อสินค้า</th>
               <th>ราคา</th>
               <th>ราคาต้นทุน</th>
@@ -88,14 +89,14 @@ export default function HomePage() {
 
               return (
                 <tr key={doc._id}>
-                  <td>{i + 1}</td>
-                  <td>{doc.itemid}</td>
-                  <td>{doc.name}</td>
-                  <td>{p}</td>
-                  <td>{c}</td>
-                  <td>{doc.stock}</td>
-                  <td>{doc.over_stock}</td>
-                  <td>{df}</td>
+                  <td className="text-center">{i + 1}</td>
+                  <td className="text-center">{doc.itemid}</td>
+                  <td className="text-center">{doc.name}</td>
+                  <td className="text-center">{p}</td>
+                  <td className="text-center">{c}</td>
+                  <td className="text-center">{doc.stock}</td>
+                  <td className="text-center">{doc.over_stock}</td>
+                  <td className="text-center">{df}</td>
                 </tr>
               )
             })}

@@ -1,3 +1,52 @@
 body {
   background-color: #fffafa;
 }
+
+.card {
+  background-color: blanchedalmond;
+}
+
+.alert {
+  color: red;
+}
+
+.plus {
+  border: none;
+  background: rgb(15, 151, 22);
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.delete {
+  border: none;
+  background: rgb(255, 0, 0);
+  color: white;
+  border-radius: 20px;
+  margin-left: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 15px;
+}
+
+a {
+  cursor: pointer;
+}
+a:hover {
+  box-shadow: rgb(0, 110, 255) 1px 1px 7px;
+  border-radius: 20px;
+  justify-items: baseline;
+  cursor: pointer;
+  background-color: rgba(208, 208, 223, 0.664);
+}
