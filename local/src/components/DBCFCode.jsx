@@ -27,8 +27,8 @@ export default function DBCFCode() {
   const showData = (result) => {
     let r = (
       <form onSubmit={onSubmitForm} ref={form}>
-        <table className="table table-striped">
-          <thead>
+        <table className="table table-striped ">
+          <thead className="table-warning">
             <tr>
               <th className="text-center">
                 <input type="checkbox" />
@@ -37,6 +37,7 @@ export default function DBCFCode() {
               <th className="text-center">CF CODE</th>
               <th className="text-center">สินค้าที่มี</th>
               <th className="text-center">รายละเอียด</th>
+              <th className="text-center"></th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
@@ -56,17 +57,17 @@ export default function DBCFCode() {
                     <button className="btn btn-sm btn-success">เปิด</button>
                   </td>
                   <td className="text-center">
-                    <div className="cardcode">A42</div>
+                    <div className="cardcode">{doc.itemid}</div>
                   </td>
 
                   <td className="text-center">
-                    <div className="card">
+                    <div className="">
                       <FaBoxOpen />
                       {doc.stock}
                     </div>
                   </td>
                   <td>
-                    <div className="carddocument">
+                    <div className="carddocument text-center">
                       <p>{doc.name}</p>
                       <p>฿{p}</p>
                     </div>
@@ -123,13 +124,13 @@ export default function DBCFCode() {
           alert(result.error)
         } else {
           if (result.length === 0) {
-            setData('ไม่มีรายการข้อมูล')
+            setData('ไม่มี CF CODE ดังกล่าว')
           } else {
             showData(result)
           }
-          alert('ข้อมูลถูกลบแล้ว')
+          alert('cf code ถูกลบแล้ว')
         }
-        navigate('/db/delete')
+        navigate('/db/cfcode')
       })
       .catch((err) => alert(err))
   }

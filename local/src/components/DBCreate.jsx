@@ -23,7 +23,7 @@ export default function DBCreate() {
         } else {
           alert('เกิดข้อผิดพลาด ข้อมูลไม่ถูกบันทึก')
         }
-        navigate('/')
+        navigate('/db/create')
       })
       .catch((e) => alert(e))
   }
@@ -38,7 +38,7 @@ export default function DBCreate() {
           <label className="form-label">รหัส CF</label>
           <input
             type="text"
-            placeholder="A01"
+            placeholder=" ' A01 ' "
             name="itemid"
             className="form-control form-control-sm"
             required
@@ -48,7 +48,7 @@ export default function DBCreate() {
           <input
             type="text"
             name="name"
-            placeholder="หนังสือเรียนวิชา React"
+            placeholder="' หนังสือ '"
             className="form-control form-control-sm"
             required
           />
@@ -58,7 +58,7 @@ export default function DBCreate() {
           <input
             type="number"
             name="price"
-            placeholder="199"
+            placeholder="' 250 '"
             min="0"
             className="form-control form-control-sm"
             required
@@ -71,7 +71,7 @@ export default function DBCreate() {
             type="number"
             name="cost"
             min="0"
-            placeholder="99"
+            placeholder="' 200 '"
             className="form-control form-control-sm"
             required
           />
@@ -81,7 +81,7 @@ export default function DBCreate() {
           <input
             type="number"
             name="stock"
-            placeholder="10"
+            placeholder="' 10 '"
             min="0"
             className="form-control form-control-sm"
             required
@@ -92,7 +92,7 @@ export default function DBCreate() {
           <input
             type="number"
             name="over_stock"
-            placeholder="5"
+            placeholder="' 5 '"
             min="0"
             className="form-control form-control-sm"
           />

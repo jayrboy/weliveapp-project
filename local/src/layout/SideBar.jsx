@@ -7,10 +7,14 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined'
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
-import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined'
+// import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 import TableViewIcon from '@mui/icons-material/TableView'
+import DataObjectOutlinedIcon from '@mui/icons-material/DataObjectOutlined'
+import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined'
+import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined'
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
 
 const SideBar = () => {
   const [isCollapsed, setisCollapsed] = useState(true)
@@ -75,7 +79,34 @@ const SideBar = () => {
                 >
                   คลังสินค้า
                 </MenuItem>
-                <MenuItem icon={<BarChartOutlinedIcon />}>Line charts</MenuItem>
+
+                <MenuItem
+                  icon={<AddBusinessOutlinedIcon />}
+                  onClick={() => navigate('/db/create')}
+                >
+                  เพิ่มสินค้า
+                </MenuItem>
+
+                <MenuItem
+                  icon={<EditNoteOutlinedIcon />}
+                  onClick={() => navigate('/db/update')}
+                >
+                  แก้ไขสินค้า
+                </MenuItem>
+
+                <MenuItem
+                  icon={<RemoveShoppingCartOutlinedIcon />}
+                  onClick={() => navigate('/db/delete')}
+                >
+                  ลบสินค้า
+                </MenuItem>
+
+                <MenuItem
+                  icon={<DataObjectOutlinedIcon />}
+                  onClick={() => navigate('/db/cfcode')}
+                >
+                  จัดการ CF CODE
+                </MenuItem>
               </SubMenu>
 
               <SubMenu label="Manage" icon={<PeopleOutlinedIcon />}>

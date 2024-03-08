@@ -75,7 +75,7 @@ export default function DBCart() {
       return
     }
 
-    fetch('/api/db/delete', {
+    fetch('/api/db/cart', {
       method: 'POST',
       body: JSON.stringify(fe),
       headers: { 'Content-Type': 'application/json' },
@@ -92,7 +92,7 @@ export default function DBCart() {
           }
           alert('ข้อมูลถูกลบแล้ว')
         }
-        navigate('/db/delete')
+        navigate('/db/cart')
       })
       .catch((err) => alert(err))
   }

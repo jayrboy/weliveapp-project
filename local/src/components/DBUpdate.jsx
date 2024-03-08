@@ -40,6 +40,9 @@ export default function DBUpdate() {
               <th className="text-center">จำนวนสินค้า</th>
               <th className="text-center">สินค้าเกินจำนวน</th>
               <th className="text-center">วันที่เพิ่มสินค้า</th>
+              <td className="text-center"></td>
+              <td className="text-center"></td>
+              <td className="text-center"></td>
             </tr>
           </thead>
           <tbody className="table-group-divider">
@@ -73,6 +76,9 @@ export default function DBUpdate() {
                   <td className="text-center">{doc.stock}</td>
                   <td className="text-center">{doc.over_stock}</td>
                   <td className="text-center">{df}</td>
+                  <td className="text-center"></td>
+                  <td className="text-center"></td>
+                  <td className="text-center"></td>
                 </tr>
               )
             })}
@@ -134,6 +140,9 @@ export default function DBUpdate() {
                 <input type="date" name="date_added" ref={date_added} />
               </td>
               <td></td>
+              <td></td>
+              <td></td>
+              
             </tr>
           </tbody>
         </table>
