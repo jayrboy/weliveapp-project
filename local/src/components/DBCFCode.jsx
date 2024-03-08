@@ -4,7 +4,7 @@ import { FaBoxOpen } from 'react-icons/fa'
 
 import { MdEdit, MdDelete } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import '../cfcode.css'
+
 export default function DBCFCode() {
   let [data, setData] = useState('')
   const form = useRef()

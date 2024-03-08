@@ -1,52 +1,42 @@
-body {
-  background-color: #fffafa;
-}
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
 
-.card {
-  background-color: blanchedalmond;
+html,
+body,
+#root,
+.app,
+.content {
+  height: 100%;
+  width: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #f7fff7;
+  overflow: hidden;
 }
-
-.alert {
-  color: red;
+.content_body {
+  background-color: #f0f0f0;
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
 }
-
-.plus {
-  border: none;
-  background: rgb(15, 151, 22);
-  color: white;
-  border-radius: 20px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
-}
-
-.delete {
-  border: none;
-  background: rgb(255, 0, 0);
-  color: white;
-  border-radius: 20px;
-  margin-left: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.card {
+.app {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  border-radius: 5px;
-  margin: 10px auto;
-  padding: 15px;
+  position: relative;
+}
+.menu-bars {
+  text-decoration: none;
+  color: #000;
+}
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-a {
-  cursor: pointer;
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
 }
-a:hover {
-  box-shadow: rgb(0, 110, 255) 1px 1px 7px;
-  border-radius: 20px;
-  justify-items: baseline;
-  cursor: pointer;
-  background-color: rgba(208, 208, 223, 0.664);
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

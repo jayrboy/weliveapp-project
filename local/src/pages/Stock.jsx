@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import './home.css'
-export default function HomePage() {
+
+const ProductList = () => {
   let [data, setData] = useState('')
   let [page, setPage] = useState([])
 
@@ -27,7 +27,7 @@ export default function HomePage() {
     }
 
     let r = (
-      <div className="container" style={{ maxWidth: '100%' }}>
+      <div className="container">
         <div className="row">
           <div className="col-sm-6 mb-2 d-flex">
             <form action="/db/search" method="get" className="d-flex">
@@ -59,49 +59,48 @@ export default function HomePage() {
           </div>
         </div>
 
-        <table
-          className="table table-sm table-striped caption-top"
-          style={{ maxWidth: '100%' }}
-        >
-          <thead className="table-dark">
-            <tr style={numDocs === 0 ? hidden : null}>
-              <th>#</th>
-              <th>CF CODE</th>
-              <th>ชื่อสินค้า</th>
-              <th>ราคา</th>
-              <th>ราคาต้นทุน</th>
-              <th>จำนวนสินค้า</th>
-              <th>สินค้าเกินจำนวน</th>
-              <th>วันที่เพิ่มสินค้า</th>
-            </tr>
-          </thead>
-          <tbody>
-            {result.docs.map((doc, i) => {
-              //จัดรูปแบบวันเดือนปี ที่สามารถเข้าใจได้
-              let dt = new Date(Date.parse(doc.date_added))
-              let df = (
-                <>
-                  {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
-                </>
-              )
-              let p = new Intl.NumberFormat().format(doc.price)
-              let c = new Intl.NumberFormat().format(doc.cost)
+        <div className="table-responsive">
+          <table className="table table-sm table-striped caption-top mt-3">
+            <thead className="table-dark">
+              <tr style={numDocs === 0 ? hidden : null}>
+                <th>#</th>
+                <th>CF CODE</th>
+                <th>ชื่อสินค้า</th>
+                <th>ราคา</th>
+                <th>ราคาต้นทุน</th>
+                <th>จำนวนสินค้า</th>
+                <th>สินค้าเกินจำนวน</th>
+                <th>วันที่เพิ่มสินค้า</th>
+              </tr>
+            </thead>
+            <tbody>
+              {result.docs.map((doc, i) => {
+                //จัดรูปแบบวันเดือนปี ที่สามารถเข้าใจได้
+                let dt = new Date(Date.parse(doc.date_added))
+                let df = (
+                  <>
+                    {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
+                  </>
+                )
+                let p = new Intl.NumberFormat().format(doc.price)
+                let c = new Intl.NumberFormat().format(doc.cost)
 
-              return (
-                <tr key={doc._id}>
-                  <td className="text-center">{i + 1}</td>
-                  <td className="text-center">{doc.itemid}</td>
-                  <td className="text-center">{doc.name}</td>
-                  <td className="text-center">{p}</td>
-                  <td className="text-center">{c}</td>
-                  <td className="text-center">{doc.stock}</td>
-                  <td className="text-center">{doc.over_stock}</td>
-                  <td className="text-center">{df}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+                return (
+                  <tr key={doc._id}>
+                    <td className="text-center">{i + 1}</td>
+                    <td className="text-center">{doc.itemid}</td>
+                    <td className="text-center">{doc.name}</td>
+                    <td className="text-center">{p}</td>
+                    <td className="text-center">{c}</td>
+                    <td className="text-center">{doc.stock}</td>
+                    <td className="text-center">{doc.over_stock}</td>
+                    <td className="text-center">{df}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
         <span className="ms-3">
           {numDocs === 0 ? (
             <>ไม่พบข้อมูล</>
@@ -180,27 +179,17 @@ export default function HomePage() {
   }
 
   return (
-    <>
-      <div
-        className="card mt-5 mx-auto p-4 rounded"
-        style={{ width: '400px', background: '#fff' }}
-      >
-        <h1>
-          WE Live App <span className="badge bg-secondary">New</span>
-        </h1>
-        <p>Home Page</p>
+    <div style={{ margin: '20px' }}>
+      <div>{data}</div>
+      <br />
+      <div>
+        <ul className="pagination">
+          {page.map((p) => (
+            <>{p}</>
+          ))}
+        </ul>
       </div>
-      <div style={{ margin: '20px' }}>
-        <div>{data}</div>
-        <br />
-        <div>
-          <ul className="pagination">
-            {page.map((p) => (
-              <>{p}</>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </>
+    </div>
   )
 }
+export default ProductList
