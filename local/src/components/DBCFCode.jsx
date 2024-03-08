@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaBoxOpen } from 'react-icons/fa'
-
 import { MdEdit, MdDelete } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
@@ -28,7 +27,7 @@ export default function DBCFCode() {
     let r = (
       <form onSubmit={onSubmitForm} ref={form}>
         <table className="table table-striped ">
-          <thead className="table-warning">
+          <thead className="table-success">
             <tr>
               <th className="text-center">
                 <input type="checkbox" />
@@ -54,32 +53,36 @@ export default function DBCFCode() {
                     />
                   </td>
                   <td className="text-center">
-                    <button className="btn btn-sm btn-success">เปิด</button>
+                    <div className="btn btn-sm m-1 btn-danger">
+                      พื้นที่สำหรับใส่ Toggle Button !!!
+                    </div>
                   </td>
                   <td className="text-center">
-                    <div className="cardcode">{doc.itemid}</div>
+                    <div>{doc.itemid}</div>
                   </td>
 
                   <td className="text-center">
-                    <div className="">
+                    <div>
                       <FaBoxOpen />
                       {doc.stock}
                     </div>
                   </td>
                   <td>
                     <div className="carddocument text-center">
-                      <p>{doc.name}</p>
-                      <p>฿{p}</p>
+                      <p>
+                        {doc.name} <br /> ฿ {p}
+                      </p>
                     </div>
                   </td>
                   <td>
-                    <div className="btn btn-sm btn-warning">
-                      <MdEdit />
-                    </div>
-
-                    <div className="btn btn-sm btn-danger m-2">
+                    <Link to="/db/update">
+                      <div className="btn btn-sm btn-warning">
+                        <MdEdit />
+                      </div>
+                    </Link>
+                    <button className="btn btn-sm btn-danger m-1">
                       <MdDelete />
-                    </div>
+                    </button>
                   </td>
                 </tr>
               )
@@ -91,7 +94,6 @@ export default function DBCFCode() {
           <Link to="/db/create">
             <button className="btn btn-primary btn-sm">เพิ่มโค้ดการขาย</button>
           </Link>
-          <button className="btn btn-danger btn-sm  m-2">ลบโค้ดที่เลือก</button>
         </div>
       </form>
     )

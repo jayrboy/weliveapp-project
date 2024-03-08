@@ -142,7 +142,6 @@ export default function DBUpdate() {
               <td></td>
               <td></td>
               <td></td>
-              
             </tr>
           </tbody>
         </table>

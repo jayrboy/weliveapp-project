@@ -4,7 +4,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'
+// import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined'
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
 // import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined'
@@ -15,6 +15,9 @@ import DataObjectOutlinedIcon from '@mui/icons-material/DataObjectOutlined'
 import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined'
 import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined'
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
+import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined'
 
 const SideBar = () => {
   const [isCollapsed, setisCollapsed] = useState(true)
@@ -109,7 +112,27 @@ const SideBar = () => {
                 </MenuItem>
               </SubMenu>
 
-              <SubMenu label="Manage" icon={<PeopleOutlinedIcon />}>
+              <SubMenu
+                label="พื้นที่สำหรับ Admin"
+                icon={<AdminPanelSettingsOutlinedIcon />}
+              >
+                <MenuItem onClick={() => navigate('/')}>User</MenuItem>
+                <MenuItem> Admin</MenuItem>
+              </SubMenu>
+
+              <SubMenu
+                label="พื้นที่สำหรับ User"
+                icon={<PersonOutlineOutlinedIcon />}
+              >
+                <MenuItem onClick={() => navigate('/db/userinvoice')}>
+                  Invoice
+                </MenuItem>
+                <MenuItem onClick={() => navigate('/db/userorder')}>
+                  ใบออเดอร์
+                </MenuItem>
+              </SubMenu>
+
+              <SubMenu label="Manage" icon={<LocalPoliceOutlinedIcon />}>
                 <MenuItem onClick={() => navigate('/')}>User</MenuItem>
                 <MenuItem> Admin</MenuItem>
               </SubMenu>

@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaFacebookF } from 'react-icons/fa'
+
 export default function DBReg() {
   const form = useRef()
   const navigate = useNavigate()
@@ -36,7 +36,7 @@ export default function DBReg() {
       >
         <h1>Sign in</h1>
         <form onSubmit={onSubmitForm} ref={form}>
-        <br/>
+          <br />
           <input
             type="text"
             name="name"
