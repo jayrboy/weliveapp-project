@@ -1,61 +1,158 @@
+import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { CssBaseline, Box } from '@mui/material'
-import SideBar from './layout/SideBar'
-import HeaderBar from './layout/HeaderBar'
-import HomePage from './components/pages/Home'
-import DBCreate from './components/DBCreate'
-import DBUpdate from './components/DBUpdate'
-import DBDelete from './components/DBDelete'
-import DBCart from './components/DBCart'
+
+import { CssBaseline } from '@mui/material'
+
+import Register from './components/pages/auth/Register'
+import Login from './components/pages/auth/Login'
+import AdminRoute from './routes/AdminRoute'
+import UserRoute from './routes/UserRoute'
+
+import HomeUser from './components/pages/user/HomeUser'
+import HomeAdmin from './components/pages/admin/HomeAdmin'
+import DBCreate from './components/pages/admin/DBCreate'
+import DBUpdate from './components/pages/admin/DBUpdate'
+import DBDelete from './components/pages/admin/DBDelete'
+import DBCart from './components/pages/admin/DBCart'
 import DBOrder from './components/DBOrder'
 import DBCFCode from './components/DBCFCode'
-import Stock from './components/pages/Stock'
+import Stock from './components/pages/admin/Stock'
 import USorder from './components/USorder'
 import USinvoice from './components/USinvoice'
 import ADinvoice from './components/ADinvoice'
 import ADexpress from './components/ADexpress'
 import ADSales from './components/ADSales'
 import ADSeacrh from './components/ADSearch'
-import Register from './components/pages/auth/Register'
-import Login from './components/pages/auth/Login'
 
 function App() {
   return (
-    <>
+    <React.Fragment>
       <CssBaseline />
+      {/* Public */}
       <Routes>
+        <Route path="*" errorElement={<Navigate to="/" />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+
+        {/* User */}
+        <Route
+          path="/user/home"
+          element={
+            <UserRoute>
+              <HomeUser />
+            </UserRoute>
+          }
+        />
+        <Route path="/db/userorder" element={<USorder />} />
+        <Route path="/db/userinvoice" element={<USinvoice />} />
+
+        {/* Admin */}
+        <Route
+          path="/admin/home"
+          element={
+            <AdminRoute>
+              <HomeAdmin />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/stock"
+          element={
+            <AdminRoute>
+              <Stock />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/search"
+          element={
+            <AdminRoute>
+              <HomeAdmin />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/create"
+          element={
+            <AdminRoute>
+              <DBCreate />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/update"
+          element={
+            <AdminRoute>
+              <DBUpdate />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/delete"
+          element={
+            <AdminRoute>
+              <DBDelete />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/cart"
+          element={
+            <AdminRoute>
+              <DBCart />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/order"
+          element={
+            <AdminRoute>
+              <DBOrder />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/cfcode"
+          element={
+            <AdminRoute>
+              <DBCFCode />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/admininvoice"
+          element={
+            <AdminRoute>
+              <ADinvoice />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/adminexpress"
+          element={
+            <AdminRoute>
+              <ADexpress />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/adminsales"
+          element={
+            <AdminRoute>
+              <ADSales />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/adminsearch"
+          element={
+            <AdminRoute>
+              <ADSeacrh />
+            </AdminRoute>
+          }
+        />
       </Routes>
-      <div className="app">
-        <SideBar />
-        <main className="content">
-          <HeaderBar />
-          <div className="content_body">
-            <Box>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/stock" element={<Stock />} />
-                <Route path="/db/search" element={<HomePage />} />
-                <Route path="*" errorElement={<Navigate to="/" />} />
-                <Route path="/db/create" element={<DBCreate />} />
-                <Route path="/db/update" element={<DBUpdate />} />
-                <Route path="/db/delete" element={<DBDelete />} />
-                <Route path="/db/cart" element={<DBCart />} />
-                <Route path="/db/order" element={<DBOrder />} />
-                <Route path="/db/cfcode" element={<DBCFCode />} />
-                <Route path="/db/userorder" element={<USorder />} />
-                <Route path="/db/userinvoice" element={<USinvoice />} />
-                <Route path="/db/admininvoice" element={<ADinvoice />} />
-                <Route path="/db/adminexpress" element={<ADexpress />} />
-                <Route path="/db/adminsales" element={<ADSales />} />
-                <Route path="/db/adminsearch" element={<ADSeacrh />} />
-              </Routes>
-            </Box>
-          </div>
-        </main>
-      </div>
-    </>
+    </React.Fragment>
   )
 }
 

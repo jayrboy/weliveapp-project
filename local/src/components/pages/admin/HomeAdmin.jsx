@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Home() {
+export default function HomeAdmin() {
   return (
     <React.Fragment>
       <div
@@ -10,7 +10,7 @@ export default function Home() {
         <h1>
           WE Live App <span className="badge bg-secondary">New</span>
         </h1>
-        <p>Home Page</p>
+        <p>Home Page Admin</p>
       </div>
     </React.Fragment>
   )
