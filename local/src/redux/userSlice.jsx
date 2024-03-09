@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 //TODO:
 const initialState = {
-  value: 'Redux',
   user: [],
 }
 
@@ -10,16 +9,14 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state) => {
-      state.value = 'jay login'
-      state.user = 'welcome'
+    login: (state, action) => {
+      state.user = action.payload
     },
-    logout: (state) => {
-      state.value = 'jay logout'
-      state.user = 'bye bye'
+    logout: (state, action) => {
+      state.user = action.payload
     },
     incrementByAmount: (state, action) => {
-      state.value += action.payload
+      state.user += action.payload
     },
   },
 })

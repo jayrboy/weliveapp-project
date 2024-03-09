@@ -10,6 +10,8 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../../../redux/userSlice'
 
 function Copyright(props) {
   return (
@@ -31,6 +33,7 @@ function Copyright(props) {
 
 export default function Login() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -48,9 +51,17 @@ export default function Login() {
         .then((result) => {
           console.log(result)
           alert(result.data)
+          dispatch(
+            login({
+              username: result.data.payload.user.username,
+              role: result.data.payload.user.role,
+              token: result.data.token,
+            })
+          )
+          localStorage.setItem('token', result.data.token)
 
           //TODO: remove comment, this redirect shouldn't need to be re-render from path login.
-          // roleRedirect(result.data.payload.user.role)
+          roleRedirect(result.data.payload.user.role)
         })
         .catch((err) => alert(err.message))
     } else {

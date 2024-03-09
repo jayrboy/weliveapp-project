@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import { CssBaseline } from '@mui/material'
@@ -24,7 +24,44 @@ import ADexpress from './components/pages/admin/ADexpress'
 import ADSales from './components/pages/admin/ADSales'
 import ADSeacrh from './components/pages/admin/ADSearch'
 
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { login } from './redux/userSlice'
+
 function App() {
+  // TODO:
+  const dispatch = useDispatch()
+
+  const userToken = localStorage.getItem('token')
+  // console.log({ token: userToken })
+  if (!userToken) {
+    console.log('ไม่พบ token') // แสดง alert ให้ผู้ใช้ทราบว่าไม่พบ token
+  }
+
+  const currentUser = async (authtoken) =>
+    await axios.post(
+      '/api/current-user',
+      {},
+      {
+        headers: { authtoken },
+      }
+    )
+
+  currentUser(userToken)
+    .then((result) => {
+      // console.log(result)
+      dispatch(
+        login({
+          username: result.data.username,
+          role: result.data.role,
+          token: userToken,
+        })
+      )
+    })
+    .catch((err) =>
+      console.log('Runtime Error 1 ปัญหาไม่เจอ Token: ', err.message)
+    )
+
   return (
     <React.Fragment>
       <CssBaseline />

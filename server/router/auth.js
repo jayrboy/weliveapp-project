@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs'
 import { User } from '../models.js'
 import jwt from 'jsonwebtoken'
 
+import { auth } from '../middleware/auth.js'
+
 const router = express.Router()
 
 // http://localhost:8000/api/register
@@ -58,6 +60,19 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.log({ message: error.message })
     res.status(500)
+  }
+})
+
+router.post('/current-user', auth, async (req, res) => {
+  try {
+    console.log('currentUser', req.user)
+    const user = await User.findOne({ username: req.user.username })
+      .select('-password')
+      .exec()
+    res.send(user)
+  } catch (error) {
+    console.log({ message: error.message })
+    res.status(500).send('Server Error')
   }
 })
 
