@@ -14,15 +14,15 @@ import DBCreate from './components/pages/admin/DBCreate'
 import DBUpdate from './components/pages/admin/DBUpdate'
 import DBDelete from './components/pages/admin/DBDelete'
 import DBCart from './components/pages/admin/DBCart'
-import DBOrder from './components/DBOrder'
-import DBCFCode from './components/DBCFCode'
+import DBOrder from './components/pages/admin/DBOrder'
+import DBCFCode from './components/pages/admin/DBCFCode'
 import Stock from './components/pages/admin/Stock'
-import USorder from './components/USorder'
-import USinvoice from './components/USinvoice'
-import ADinvoice from './components/ADinvoice'
-import ADexpress from './components/ADexpress'
-import ADSales from './components/ADSales'
-import ADSeacrh from './components/ADSearch'
+import USorder from './components/pages/user/USorder'
+import USinvoice from './components/pages/user/USinvoice'
+import ADinvoice from './components/pages/admin/ADinvoice'
+import ADexpress from './components/pages/admin/ADexpress'
+import ADSales from './components/pages/admin/ADSales'
+import ADSeacrh from './components/pages/admin/ADSearch'
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
 
         {/* User */}
         <Route
-          path="/user/home"
+          path="/"
           element={
             <UserRoute>
               <HomeUser />

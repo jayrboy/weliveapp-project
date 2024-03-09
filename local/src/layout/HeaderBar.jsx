@@ -1,3 +1,5 @@
+import logo from '../assets/logo-we.png'
+
 import { useState } from 'react'
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material'
 import InputBase from '@mui/material/InputBase'
@@ -21,7 +23,7 @@ const HeaderBar = () => {
       {/* Logo */}
       <Box display="flex" alignItems="center">
         <img
-          src="./logo-we.png"
+          src={logo}
           alt="Logo"
           width="40px"
           style={{ borderRadius: '50%' }}

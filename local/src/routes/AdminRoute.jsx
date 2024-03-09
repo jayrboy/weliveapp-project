@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import SideBar from '../layout/SideBar'
-import HeaderBar from '../assets/HeaderBar'
+import HeaderBar from '../layout/HeaderBar'
 
 const AdminRoute = ({ children }) => {
   return (

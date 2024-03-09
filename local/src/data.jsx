@@ -2,7 +2,7 @@
   ข้อมูลเรียงลำดับแบบ Reverse Chronological
   ตามเวลา เก่าสุดอยู่บน ใหม่สุดอยู่ล่าง
 */
-const comments = [
+export const comments = [
   {
     created_time: '2024-08-02T16:57:21+0000',
     from: { name: 'Jay Jakkrit', id: '24610349765279316' },
@@ -64,5 +64,3 @@ const comments = [
     id: '514878379814006_514885169813327',
   },
 ]
-
-export default comments
