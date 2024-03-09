@@ -17,7 +17,7 @@ import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined'
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
-import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined'
+import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined'
 
 const SideBar = () => {
   const [isCollapsed, setisCollapsed] = useState(true)
@@ -116,8 +116,9 @@ const SideBar = () => {
                 label="พื้นที่สำหรับ Admin"
                 icon={<AdminPanelSettingsOutlinedIcon />}
               >
-                <MenuItem onClick={() => navigate('/')}>User</MenuItem>
-                <MenuItem> Admin</MenuItem>
+                <MenuItem onClick={() => navigate('/db/admininvoice')}>
+                  ส่งใบแจ้งชำระเงิน
+                </MenuItem>
               </SubMenu>
 
               <SubMenu
@@ -132,9 +133,11 @@ const SideBar = () => {
                 </MenuItem>
               </SubMenu>
 
-              <SubMenu label="Manage" icon={<LocalPoliceOutlinedIcon />}>
-                <MenuItem onClick={() => navigate('/')}>User</MenuItem>
-                <MenuItem> Admin</MenuItem>
+              <SubMenu label="Setting" icon={<SettingsSuggestOutlinedIcon />}>
+                <MenuItem onClick={() => navigate('/')}>ทั่วไป</MenuItem>
+                <MenuItem onClick={() => navigate('/db/adminexpress')}>
+                  ค่าขนส่ง
+                </MenuItem>
               </SubMenu>
             </Menu>
 

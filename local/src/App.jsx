@@ -13,6 +13,8 @@ import DBReg from './components/DBReg'
 import Stock from './pages/Stock'
 import USorder from './components/USorder'
 import USinvoice from './components/USinvoice'
+import ADinvoice from './components/ADinvoice'
+import ADexpress from './components/ADexpress'
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
                 <Route path="/db/register" element={<DBReg />} />
                 <Route path="/db/userorder" element={<USorder />} />
                 <Route path="/db/userinvoice" element={<USinvoice />} />
+                <Route path="/db/admininvoice" element={<ADinvoice />} />
+                <Route path="/db/adminexpress" element={<ADexpress />} />
               </Routes>
             </Box>
           </div>

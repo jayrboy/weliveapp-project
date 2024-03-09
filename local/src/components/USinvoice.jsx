@@ -1,10 +1,16 @@
-import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
-
 export default function USinvoice() {
   return (
-    <form className="relative flex flex-column px-2 md:flex-row mt-3">
-      <div className="my-6 flex-1 space-y-2 rounded-md bg-white p-4 shadow-sm sm:space-y-4 md:p-6">
-        <div className="flex flex-column justify-content-between space-y-2 border-bottom border-info pb-4 md:flex-row md:items-center md:space-y-0">
+    <form
+      className="relative flex-column px-2 mt-3 m-auto overflow-scroll"
+      style={{ height: '1000px' }}
+    >
+      <div
+        className=" my-6 flex-grow-1 d-md-grid bg-white p-4 shadow-sm overflow-y-visible border-warning justify-content-around m-auto "
+        style={{ width: '500px' }}
+      >
+        {/* my-6 flex-1 space-y-2 rounded-md bg-white p-4 shadow-sm sm:space-y-4
+        md:p-6 */}
+        <div className=" flex-column justify-content-between space-y-2 border-bottom border-info pb-4 md:flex-row md:items-center md:space-y-0">
           <div className="flex space-x-2">
             <span className=" font-monospace">Current Date:</span>
             <span> 09/03/2024 </span>
@@ -19,6 +25,7 @@ export default function USinvoice() {
         </h1>
         <div>
           <label className=" ">ชื่อลูกค้า : </label>
+          <br />
           <input
             required
             placeholder='" นายเจษฎากร คุ้มเดช "'
@@ -26,14 +33,17 @@ export default function USinvoice() {
             name="customerName"
           ></input>
           <br />
-          <label className="mt-3">ที่อยู่ : </label>
+          <br />
+          <label>ที่อยู่ : </label>
+          <br />
           <textarea
-            className="w-100"
+            style={{ width: '400px', height: ' 100px' }}
             required
             placeholder='" คอนโด ASDWR ตึก 99 12/123 เขต จอมพล แขวง จตุจักร จังหวัด กรุงเทพ 10900 "'
             type="text"
             name="customerName"
           ></textarea>
+          <br />
           <label className=" mt-2">เลือกขนส่ง</label>
           <input required type="radio" className=" ms-5"></input>
           <span> Flash </span>
@@ -51,7 +61,7 @@ export default function USinvoice() {
             </span>
           </label>
         </div>
-
+        <br />
         <table className=" w-100 p-4 align-content-md-start text-center">
           <thead>
             <tr className=" border-success">
@@ -72,16 +82,10 @@ export default function USinvoice() {
               <td>
                 <p> * พื้นที่ import รวมราคา</p>
               </td>
-              <td className=" flex-fill align-items-center justify-content-center">
-                <button className=" btn rounded-2 bg-danger p-2 text-white shadow-sm">
-                  {' '}
-                  <BackspaceOutlinedIcon />
-                </button>
-              </td>
+              <td className=" flex-fill align-items-center justify-content-center"></td>
             </tr>
           </tbody>
         </table>
-
         <div className=" flex-column carousel-item-end pt-5 w-100">
           <div className="">
             <span className=" p-5">Subtotal :</span>
@@ -102,10 +106,10 @@ export default function USinvoice() {
         </div>
       </div>
 
-      <div>
+      <div className="text-center mt-3">
         <div>
-          <button className="btn btn-primary w-100 mt-3">
-            ส่งแบบฟอร์มยืนยันการชำระเงิน
+          <button className="btn btn-sm btn-primary">
+            <span>ส่งแบบฟอร์มยืนยันการชำระเงิน</span>
           </button>
         </div>
       </div>
