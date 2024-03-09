@@ -17,7 +17,7 @@ import ADexpress from './components/ADexpress'
 import ADSales from './components/ADSales'
 import ADSeacrh from './components/ADSearch'
 import Register from './components/pages/auth/Register'
-
+import Login from './components/pages/auth/Login'
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <div className="app">
         <SideBar />
