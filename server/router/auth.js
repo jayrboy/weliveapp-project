@@ -8,23 +8,21 @@ const router = express.Router()
 // http://localhost:8000/api/register
 router.post('/register', async (req, res) => {
   try {
-    // check user
-    // console.log(req.body)
-    const { name, password } = req.body
-    const user = await User.findOne({ name })
-    if (user) {
+    let { username, password } = req.body
+    let userData = await User.findOne({ username })
+    if (userData) {
       return res.send('User Already Exists!').status(400)
+    } else {
+      // encrypt
+      const salt = await bcrypt.genSalt(10)
+      password = await bcrypt.hash(password, salt)
+      userData = new User({
+        username,
+        password,
+      })
+      await userData.save()
+      res.send('Register Successfully')
     }
-    // encrypt
-    const salt = await bcrypt.genSalt(10)
-    user = new User({
-      name,
-      password,
-    })
-    user.password = await bcrypt.hash(password, salt)
-    // save
-    await user.save()
-    res.send('Register Successfully')
   } catch (error) {
     res.status(500).send({ message: error.message })
   }
@@ -33,8 +31,8 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     // check user
-    const { name, password } = req.body
-    let user = await User.findOneAndUpdate({ name }, { new: true })
+    const { username, password } = req.body
+    let user = await User.findOneAndUpdate({ username }, { new: true })
 
     if (user) {
       const isMatch = bcrypt.compare(password, user.password)
@@ -45,7 +43,7 @@ router.post('/login', async (req, res) => {
       // payload
       let payload = {
         user: {
-          name: user.name,
+          username: user.username,
         },
       }
       // generate toke
