@@ -44,6 +44,7 @@ router.post('/login', async (req, res) => {
       let payload = {
         user: {
           username: user.username,
+          role: user.role,
         },
       }
       // generate toke

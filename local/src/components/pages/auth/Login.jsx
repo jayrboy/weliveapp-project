@@ -9,6 +9,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -29,6 +30,8 @@ function Copyright(props) {
 }
 
 export default function Login() {
+  const navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -43,12 +46,24 @@ export default function Login() {
       axios
         .post('/api/login', userData)
         .then((result) => {
-        //   console.log(result)
+          console.log(result)
           alert(result.data)
+
+          //TODO: remove comment, this redirect shouldn't need to be re-render from path login.
+          // roleRedirect(result.data.payload.user.role)
         })
         .catch((err) => alert(err.message))
     } else {
       alert('กรุณากรอกข้อมูล')
+    }
+  }
+
+  const roleRedirect = (role) => {
+    console.log(role)
+    if (role === 'admin') {
+      navigate('/admin/home')
+    } else {
+      navigate('/')
     }
   }
 
