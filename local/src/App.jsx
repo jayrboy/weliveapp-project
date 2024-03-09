@@ -15,6 +15,7 @@ import USorder from './components/USorder'
 import USinvoice from './components/USinvoice'
 import ADinvoice from './components/ADinvoice'
 import ADexpress from './components/ADexpress'
+import ADSales from './components/ADSales'
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/db/userinvoice" element={<USinvoice />} />
                 <Route path="/db/admininvoice" element={<ADinvoice />} />
                 <Route path="/db/adminexpress" element={<ADexpress />} />
+                <Route path="/db/adminsales" element={<ADSales />} />
               </Routes>
             </Box>
           </div>

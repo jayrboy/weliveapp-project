@@ -119,6 +119,9 @@ const SideBar = () => {
                 <MenuItem onClick={() => navigate('/db/admininvoice')}>
                   ส่งใบแจ้งชำระเงิน
                 </MenuItem>
+                <MenuItem onClick={() => navigate('/db/adminsales')}>
+                  <span className=" text-success">ยอดขาย</span>
+                </MenuItem>
               </SubMenu>
 
               <SubMenu
