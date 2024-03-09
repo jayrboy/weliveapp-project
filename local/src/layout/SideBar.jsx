@@ -70,7 +70,7 @@ const SideBar = () => {
 
               <MenuItem
                 icon={<HomeOutlinedIcon />}
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/admin/home')}
               >
                 Dashboard
               </MenuItem>
@@ -140,7 +140,9 @@ const SideBar = () => {
               </SubMenu>
 
               <SubMenu label="Setting" icon={<SettingsSuggestOutlinedIcon />}>
-                <MenuItem onClick={() => navigate('/')}>ทั่วไป</MenuItem>
+                <MenuItem onClick={() => navigate('/admin/home')}>
+                  ทั่วไป
+                </MenuItem>
                 <MenuItem onClick={() => navigate('/db/adminexpress')}>
                   ค่าขนส่ง
                 </MenuItem>
