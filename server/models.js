@@ -25,7 +25,7 @@ let Product = mongoose.model('Product', productSchema)
 //* User
 const userSchema = mongoose.Schema(
   {
-    name: String,
+    username: String,
     password: {
       type: String,
     },

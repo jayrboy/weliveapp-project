@@ -20,16 +20,19 @@ const HeaderBar = () => {
     <Box display="flex" justifyContent="space-between" p={2}>
       {/* Logo */}
       <Box display="flex" alignItems="center">
-        <img src="./logo-192.png" alt="Logo" width="40px" />
+        <img
+          src="./logo-we.png"
+          alt="Logo"
+          width="40px"
+          style={{ borderRadius: '50%' }}
+        />
         <Typography
           component="h1"
           variant="h6"
           color="inherit"
           noWrap
           sx={{ flexGrow: 1 }}
-        >
-          WE Live App
-        </Typography>
+        ></Typography>
       </Box>
 
       {/* icons */}
