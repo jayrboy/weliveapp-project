@@ -22,6 +22,18 @@ let productSchema = new mongoose.Schema({
 productSchema.plugin(paginate) //สำหรับแบ่งเพจ
 let Product = mongoose.model('Product', productSchema)
 
+//* User
+const userSchema = mongoose.Schema(
+  {
+    name: String,
+    password: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+)
+const User = mongoose.model('User', userSchema)
+
 //* Comment Model
 const commentSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // รหัสไอดีผู้ใช้ที่แสดงความคิดเห็น
@@ -31,4 +43,4 @@ const commentSchema = new mongoose.Schema({
 })
 const Comment = mongoose.model('Comment', commentSchema)
 
-export { Product, Comment }
+export { Product, Comment, User }
