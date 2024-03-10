@@ -25,77 +25,88 @@ export default function DBCFCode() {
 
   const showData = (result) => {
     let r = (
-      <form onSubmit={onSubmitForm} ref={form}>
-        <table className="table table-striped ">
-          <thead className="table-success">
-            <tr>
-              <th className="text-center">
-                <input type="checkbox" />
-              </th>
-              <th className="text-center">สถานะ</th>
-              <th className="text-center">CF CODE</th>
-              <th className="text-center">สินค้าที่มี</th>
-              <th className="text-center">รายละเอียด</th>
-              <th className="text-center"></th>
-            </tr>
-          </thead>
-          <tbody className="table-group-divider">
-            {result.map((doc) => {
-              let p = new Intl.NumberFormat().format(doc.price)
-              return (
-                <tr key={doc._id}>
-                  <td className="text-center ">
-                    <input
-                      type="checkbox"
-                      className="toggle-switch-checkbox"
-                      name="_id"
-                      value={doc._id}
-                    />
-                  </td>
-                  <td className="text-center">
-                    <div className="btn btn-sm m-1 btn-danger">
-                      พื้นที่สำหรับใส่ Toggle Button !!!
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <div>{doc.itemid}</div>
-                  </td>
-
-                  <td className="text-center">
-                    <div>
-                      <FaBoxOpen />
-                      {doc.stock}
-                    </div>
-                  </td>
-                  <td>
-                    <div className="carddocument text-center">
-                      <p>
-                        {doc.name} <br /> ฿ {p}
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <Link to="/db/update">
-                      <div className="btn btn-sm btn-warning">
-                        <MdEdit />
+      <>
+        <h3 className="text-start">
+          <Link to="/admin/home" className="  text-decoration-none">
+            WE LIVE |
+          </Link>{' '}
+          <span className="text-success"> จัดการ CF CODE </span>
+        </h3>
+        <form onSubmit={onSubmitForm} ref={form}>
+          <table className="table table-striped ">
+            <thead className="table-success">
+              <tr>
+                <th className="text-center">
+                  <input type="checkbox" />
+                </th>
+                <th className="text-center">สถานะ</th>
+                <th className="text-center">CF CODE</th>
+                <th className="text-center">สินค้าที่มี</th>
+                <th className="text-center">รายละเอียด</th>
+                <th className="text-center"></th>
+              </tr>
+            </thead>
+            <tbody className="table-group-divider">
+              {result.map((doc) => {
+                let p = new Intl.NumberFormat().format(doc.price)
+                return (
+                  <tr key={doc._id}>
+                    <td className="text-center ">
+                      <input
+                        type="checkbox"
+                        className="toggle-switch-checkbox"
+                        name="_id"
+                        value={doc._id}
+                      />
+                    </td>
+                    <td className="text-center">
+                      <div className="btn btn-sm m-1 btn-danger">
+                        พื้นที่สำหรับใส่ Toggle Button !!!
                       </div>
-                    </Link>
-                    <button className="btn btn-sm btn-danger m-1">
-                      <MdDelete />
-                    </button>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-        <br />
-        <div className="text-center ">
-          <Link to="/db/create">
-            <button className="btn btn-primary btn-sm">เพิ่มโค้ดการขาย</button>
-          </Link>
-        </div>
-      </form>
+                    </td>
+                    <td className="text-center">
+                      <div>{doc.itemid}</div>
+                    </td>
+
+                    <td className="text-center">
+                      <div className=" align-items-center">
+                        <FaBoxOpen />
+                        &nbsp;
+                        {doc.stock}
+                      </div>
+                    </td>
+                    <td>
+                      <div className="carddocument text-center">
+                        <p>
+                          {doc.name} <br /> ฿ {p}
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <Link to="/db/update">
+                        <div className="btn btn-sm btn-warning">
+                          <MdEdit />
+                        </div>
+                      </Link>
+                      <button className="btn btn-sm btn-danger m-1">
+                        <MdDelete />
+                      </button>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+          <br />
+          <div className="text-center ">
+            <Link to="/db/create">
+              <button className="btn btn-primary btn-sm">
+                เพิ่มโค้ดการขาย
+              </button>
+            </Link>
+          </div>
+        </form>
+      </>
     )
 
     setData(r)
@@ -142,7 +153,7 @@ export default function DBCFCode() {
       <div id="data">{data}</div>
       <br />
       <div className="d-flex justify-content-center mx-auto">
-        <a href="http://localhost:5173/" className="btn btn-light btn-sm">
+        <a href="/admin/home" className="btn btn-light btn-sm">
           หน้าหลัก
         </a>
       </div>

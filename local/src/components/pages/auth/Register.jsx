@@ -127,6 +127,9 @@ export default function Register() {
             >
               Register
             </Button>
+            <Link href="http://localhost:5173/" variant="body2">
+              Home
+            </Link>
           </Box>
           {/* Footer */}
           <Copyright sx={{ mt: 5 }} />

@@ -27,88 +27,98 @@ const ProductList = () => {
     }
 
     let r = (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-6 mb-2 d-flex">
-            <form action="/db/search" method="get" className="d-flex">
-              <div className="d-inline-block">
-                <input
-                  type="text"
-                  name="q"
-                  placeholder="พิมพ์คำที่จะค้นหา"
-                  defaultValue={params.get('q')}
-                  className="form-control form-control-sm"
-                />
-              </div>
+      <>
+        <div className="m-2 row-cols-auto">
+          <h3 className="text-start">
+            <Link to="/admin/home" className="  text-decoration-none">
+              WE LIVE |
+            </Link>{' '}
+            <span className="text-success"> คลังสินค้า </span>
+          </h3>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6 mb-2 d-flex">
+              <form action="/db/search" method="get" className="d-flex">
+                <div className="d-inline-block">
+                  <input
+                    type="text"
+                    name="q"
+                    placeholder="พิมพ์คำที่จะค้นหา"
+                    defaultValue={params.get('q')}
+                    className="form-control form-control-sm"
+                  />
+                </div>
+                &nbsp;
+                <button className="btn btn-sm btn-primary">ค้นหา</button>
+              </form>
+            </div>
+            <div className="col-sm-6">
+              <Link to="/db/create">
+                <button className="btn btn-primary btn-sm">Add</button>
+              </Link>
               &nbsp;
-              <button className="btn btn-sm btn-primary">ค้นหา</button>
-            </form>
+              <Link to="/db/update">
+                <button className="btn btn-warning btn-sm">EDIT</button>
+              </Link>
+              &nbsp;
+              <Link to="/db/delete">
+                <button className="btn btn-danger btn-sm">Delete</button>
+              </Link>
+            </div>
           </div>
-          <div className="col-sm-6">
-            <Link to="/db/create">
-              <button className="btn btn-primary btn-sm">Add</button>
-            </Link>
-            &nbsp;
-            <Link to="/db/update">
-              <button className="btn btn-warning btn-sm">EDIT</button>
-            </Link>
-            &nbsp;
-            <Link to="/db/delete">
-              <button className="btn btn-danger btn-sm">Delete</button>
-            </Link>
+
+          <div className="table-responsive">
+            <table className="table table-striped caption-top mt-3">
+              <thead className="table-success">
+                <tr style={numDocs === 0 ? hidden : null}>
+                  <th>#</th>
+                  <th>CF CODE</th>
+                  <th>ชื่อสินค้า</th>
+                  <th>ราคา</th>
+                  <th>ราคาต้นทุน</th>
+                  <th>จำนวนสินค้า</th>
+                  <th>สินค้าเกินจำนวน</th>
+                  <th>วันที่เพิ่มสินค้า</th>
+                </tr>
+              </thead>
+              <tbody>
+                {result.docs.map((doc, i) => {
+                  //จัดรูปแบบวันเดือนปี ที่สามารถเข้าใจได้
+                  let dt = new Date(Date.parse(doc.date_added))
+                  let df = (
+                    <>
+                      {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
+                    </>
+                  )
+                  let p = new Intl.NumberFormat().format(doc.price)
+                  let c = new Intl.NumberFormat().format(doc.cost)
+
+                  return (
+                    <tr key={doc._id}>
+                      <td className="text-center">{i + 1}</td>
+                      <td className="text-center">{doc.itemid}</td>
+                      <td className="text-center">{doc.name}</td>
+                      <td className="text-center">{p}</td>
+                      <td className="text-center">{c}</td>
+                      <td className="text-center">{doc.stock}</td>
+                      <td className="text-center">{doc.over_stock}</td>
+                      <td className="text-center">{df}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
           </div>
+          <span className="ms-3">
+            {numDocs === 0 ? (
+              <>ไม่พบข้อมูล</>
+            ) : (
+              <small>พบข้อมูลทั้งหมด {result.totalDocs} รายการ</small>
+            )}
+          </span>
         </div>
-
-        <div className="table-responsive">
-          <table className="table table-sm table-striped caption-top mt-3">
-            <thead className="table-dark">
-              <tr style={numDocs === 0 ? hidden : null}>
-                <th>#</th>
-                <th>CF CODE</th>
-                <th>ชื่อสินค้า</th>
-                <th>ราคา</th>
-                <th>ราคาต้นทุน</th>
-                <th>จำนวนสินค้า</th>
-                <th>สินค้าเกินจำนวน</th>
-                <th>วันที่เพิ่มสินค้า</th>
-              </tr>
-            </thead>
-            <tbody>
-              {result.docs.map((doc, i) => {
-                //จัดรูปแบบวันเดือนปี ที่สามารถเข้าใจได้
-                let dt = new Date(Date.parse(doc.date_added))
-                let df = (
-                  <>
-                    {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
-                  </>
-                )
-                let p = new Intl.NumberFormat().format(doc.price)
-                let c = new Intl.NumberFormat().format(doc.cost)
-
-                return (
-                  <tr key={doc._id}>
-                    <td className="text-center">{i + 1}</td>
-                    <td className="text-center">{doc.itemid}</td>
-                    <td className="text-center">{doc.name}</td>
-                    <td className="text-center">{p}</td>
-                    <td className="text-center">{c}</td>
-                    <td className="text-center">{doc.stock}</td>
-                    <td className="text-center">{doc.over_stock}</td>
-                    <td className="text-center">{df}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-        <span className="ms-3">
-          {numDocs === 0 ? (
-            <>ไม่พบข้อมูล</>
-          ) : (
-            <small>พบข้อมูลทั้งหมด {result.totalDocs} รายการ</small>
-          )}
-        </span>
-      </div>
+      </>
     )
 
     setData(r)

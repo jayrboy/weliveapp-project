@@ -30,6 +30,7 @@ import ResponsiveAppBar from './layout/ResponsiveAppBar'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { login } from './redux/userSlice'
+import SearchbyOrder from './components/pages/admin/SearchbyOrder'
 
 function App() {
   // TODO:
@@ -109,6 +110,14 @@ function App() {
           element={
             <AdminRoute>
               <HomeAdmin />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/db/searchbyorder"
+          element={
+            <AdminRoute>
+              <SearchbyOrder />
             </AdminRoute>
           }
         />

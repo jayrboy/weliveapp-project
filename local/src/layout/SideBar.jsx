@@ -3,11 +3,10 @@ import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 import { Box, IconButton, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
+// icon
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
-// import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined'
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
-// import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 import TableViewIcon from '@mui/icons-material/TableView'
@@ -18,7 +17,8 @@ import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined'
-
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined'
+import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined'
 const SideBar = () => {
   const [isCollapsed, setisCollapsed] = useState(true)
   const [toggled, setToggled] = useState(false)
@@ -116,13 +116,28 @@ const SideBar = () => {
                 label="พื้นที่สำหรับ Admin"
                 icon={<AdminPanelSettingsOutlinedIcon />}
               >
-                <MenuItem onClick={() => navigate('/db/admininvoice')}>
-                  ส่งใบแจ้งชำระเงิน
-                </MenuItem>
-                <MenuItem onClick={() => navigate('/db/adminsearch')}>
+                <MenuItem
+                  icon={<PersonSearchOutlinedIcon />}
+                  onClick={() => navigate('/db/adminsearch')}
+                >
                   ค้นหาลูกค้า
                 </MenuItem>
-                <MenuItem onClick={() => navigate('/db/adminsales')}>
+                <MenuItem
+                  icon={<PersonSearchOutlinedIcon />}
+                  onClick={() => navigate('/db/searchbyorder')}
+                >
+                  ค้นหาคำสั่งซื้อ
+                </MenuItem>
+                <MenuItem
+                  icon={<SettingsSuggestOutlinedIcon />}
+                  onClick={() => navigate('/db/adminexpress')}
+                >
+                  ค่าขนส่ง
+                </MenuItem>
+                <MenuItem
+                  icon={<PaidOutlinedIcon />}
+                  onClick={() => navigate('/db/adminsales')}
+                >
                   <span className=" text-success">ยอดขาย</span>
                 </MenuItem>
               </SubMenu>
@@ -136,15 +151,6 @@ const SideBar = () => {
                 </MenuItem>
                 <MenuItem onClick={() => navigate('/db/userorder')}>
                   ใบออเดอร์
-                </MenuItem>
-              </SubMenu>
-
-              <SubMenu label="Setting" icon={<SettingsSuggestOutlinedIcon />}>
-                <MenuItem onClick={() => navigate('/admin/home')}>
-                  ทั่วไป
-                </MenuItem>
-                <MenuItem onClick={() => navigate('/db/adminexpress')}>
-                  ค่าขนส่ง
                 </MenuItem>
               </SubMenu>
             </Menu>
