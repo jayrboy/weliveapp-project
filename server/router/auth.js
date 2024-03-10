@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 import { User } from '../models.js'
 import jwt from 'jsonwebtoken'
 
-import { auth } from '../middleware/auth.js'
+import { auth, adminCheck } from '../middleware/auth.js'
 
 const router = express.Router()
 
@@ -66,6 +66,19 @@ router.post('/login', async (req, res) => {
 router.post('/current-user', auth, async (req, res) => {
   try {
     console.log('currentUser', req.user)
+    const user = await User.findOne({ username: req.user.username })
+      .select('-password')
+      .exec()
+    res.send(user)
+  } catch (error) {
+    console.log({ message: error.message })
+    res.status(500).send('Server Error')
+  }
+})
+
+router.post('/current-admin', auth, adminCheck, async (req, res) => {
+  try {
+    console.log('currentAdmin', req.user)
     const user = await User.findOne({ username: req.user.username })
       .select('-password')
       .exec()
