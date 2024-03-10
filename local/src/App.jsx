@@ -30,7 +30,7 @@ import ResponsiveAppBar from './layout/ResponsiveAppBar'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { login } from './redux/userSlice'
-import ADeditcus from './components/pages/admin/ADeditcus'
+import SearchbyOrder from './components/pages/admin/SearchbyOrder'
 
 function App() {
   // TODO:
@@ -114,10 +114,10 @@ function App() {
           }
         />
         <Route
-          path="/admin/editcustomer"
+          path="/db/searchbyorder"
           element={
             <AdminRoute>
-              <ADeditcus />
+              <SearchbyOrder />
             </AdminRoute>
           }
         />

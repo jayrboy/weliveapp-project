@@ -123,6 +123,12 @@ const SideBar = () => {
                   ค้นหาลูกค้า
                 </MenuItem>
                 <MenuItem
+                  icon={<PersonSearchOutlinedIcon />}
+                  onClick={() => navigate('/db/searchbyorder')}
+                >
+                  ค้นหาคำสั่งซื้อ
+                </MenuItem>
+                <MenuItem
                   icon={<SettingsSuggestOutlinedIcon />}
                   onClick={() => navigate('/db/adminexpress')}
                 >
