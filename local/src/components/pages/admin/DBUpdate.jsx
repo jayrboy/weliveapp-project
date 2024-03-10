@@ -1,5 +1,5 @@
 /* eslint-disable padded-blocks */
-
+import { Link } from 'react-router-dom'
 import { useState, useRef, useEffect } from 'react'
 
 export default function DBUpdate() {
@@ -28,127 +28,138 @@ export default function DBUpdate() {
 
   const showData = (result) => {
     let r = (
-      <form onSubmit={onSubmitForm} ref={form}>
-        <table className="table table-striped">
-          <thead className="table-success">
-            <tr>
-              <th className="text-center">แก้ไข</th>
-              <th className="text-center">รหัสสินค้า</th>
-              <th className="text-center">ชื่อสินค้า</th>
-              <th className="text-center">ราคา</th>
-              <th className="text-center">ราคาต้นทุน</th>
-              <th className="text-center">จำนวนสินค้า</th>
-              <th className="text-center">สินค้าเกินจำนวน</th>
-              <th className="text-center">วันที่เพิ่มสินค้า</th>
-              <td className="text-center"></td>
-              <td className="text-center"></td>
-              <td className="text-center"></td>
-            </tr>
-          </thead>
-          <tbody className="table-group-divider">
-            {result.map((doc) => {
-              let dt = new Date(Date.parse(doc.date_added))
-              let df = (
-                <>
-                  {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
-                </>
-              )
-              let p = new Intl.NumberFormat().format(doc.price)
-              let c = new Intl.NumberFormat().format(doc.cost)
-              return (
-                <tr key={doc._id}>
-                  {/* เมื่อคลิก radio บนรายการใด เราก็แนบ document ของรายการนั้น
+      <>
+        <div className="m-2 row-cols-auto">
+          <h3 className="text-start">
+            <Link to="/admin/home" className="  text-decoration-none">
+              WE LIVE |
+            </Link>{' '}
+            <span className="text-success"> แก้ไขสินค้า </span>
+          </h3>
+        </div>
+
+        <form onSubmit={onSubmitForm} ref={form}>
+          <table className="table mt-3 table-striped ">
+            <thead className="table-success border-bottom border-bottom-5">
+              <tr>
+                <th className="text-center">แก้ไข</th>
+                <th className="text-center">รหัสสินค้า</th>
+                <th className="text-center">ชื่อสินค้า</th>
+                <th className="text-center">ราคา</th>
+                <th className="text-center">ราคาต้นทุน</th>
+                <th className="text-center">จำนวนสินค้า</th>
+                <th className="text-center">สินค้าเกินจำนวน</th>
+                <th className="text-center">วันที่เพิ่มสินค้า</th>
+                <td className="text-center"></td>
+                <td className="text-center"></td>
+                <td className="text-center"></td>
+              </tr>
+            </thead>
+            <tbody className="table-group-divider">
+              {result.map((doc) => {
+                let dt = new Date(Date.parse(doc.date_added))
+                let df = (
+                  <>
+                    {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
+                  </>
+                )
+                let p = new Intl.NumberFormat().format(doc.price)
+                let c = new Intl.NumberFormat().format(doc.cost)
+                return (
+                  <tr key={doc._id}>
+                    {/* เมื่อคลิก radio บนรายการใด เราก็แนบ document ของรายการนั้น
                       ไปยังฟังก์ชันเป้าหมาย เพื่อใช้ในการอ่านข้อมูลจากแต่ละฟิลด์ไปแสดงที่ฟอร์ม
                   */}
-                  <td>
-                    <input
-                      type="radio"
-                      name="_id"
-                      value={doc._id}
-                      onClick={() => onClickRadio(doc)}
-                    />
-                  </td>
+                    <td>
+                      <input
+                        type="radio"
+                        name="_id"
+                        value={doc._id}
+                        onClick={() => onClickRadio(doc)}
+                      />
+                    </td>
 
-                  <td className="text-center">{doc.itemid}</td>
-                  <td className="text-center">{doc.name}</td>
-                  <td className="text-center">{p}</td>
-                  <td className="text-center">{c}</td>
-                  <td className="text-center">{doc.stock}</td>
-                  <td className="text-center">{doc.over_stock}</td>
-                  <td className="text-center">{df}</td>
-                  <td className="text-center"></td>
-                  <td className="text-center"></td>
-                  <td className="text-center"></td>
-                </tr>
-              )
-            })}
+                    <td className="text-center">{doc.itemid}</td>
+                    <td className="text-center">{doc.name}</td>
+                    <td className="text-center">{p}</td>
+                    <td className="text-center">{c}</td>
+                    <td className="text-center">{doc.stock}</td>
+                    <td className="text-center">{doc.over_stock}</td>
+                    <td className="text-center">{df}</td>
+                    <td className="text-center"></td>
+                    <td className="text-center"></td>
+                    <td className="text-center"></td>
+                  </tr>
+                )
+              })}
 
-            {/* สร้างฟอร์มไว้ที่แถวสุดท้าย */}
-            <tr>
-              <td>
-                <button className="btn btn-warning btn-sm">แก้ไข</button>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="itemid"
-                  placeholder="รหัสสินค้า "
-                  ref={itemid}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="ชื่อสินค้า"
-                  ref={name}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  name="price"
-                  placeholder="ราคาสินค้า"
-                  ref={price}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  name="cost"
-                  placeholder="ราคาต้นทุน"
-                  ref={cost}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  name="stock"
-                  placeholder="จำนวนสินค้า"
-                  ref={stock}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  name="over_stock"
-                  placeholder="จำนวนสินค้าล้นสต็อก"
-                  ref={over_stock}
-                />
-              </td>
-              <td>
-                <input type="date" name="date_added" ref={date_added} />
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-        <div>
-          เลือกรายการที่จะแก้ไข แล้วใส่ข้อมูลใหม่ลงไป จากนั้นคลิกปุ่ม แก้ไข
-        </div>
-      </form>
+              {/* สร้างฟอร์มไว้ที่แถวสุดท้าย */}
+              <tr>
+                <td>
+                  <button className="btn btn-warning btn-sm">แก้ไข</button>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="itemid"
+                    placeholder="รหัสสินค้า "
+                    ref={itemid}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="ชื่อสินค้า"
+                    ref={name}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="price"
+                    placeholder="ราคาสินค้า"
+                    ref={price}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="cost"
+                    placeholder="ราคาต้นทุน"
+                    ref={cost}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="stock"
+                    placeholder="จำนวนสินค้า"
+                    ref={stock}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="over_stock"
+                    placeholder="จำนวนสินค้าล้นสต็อก"
+                    ref={over_stock}
+                  />
+                </td>
+                <td>
+                  <input type="date" name="date_added" ref={date_added} />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            เลือกรายการที่จะแก้ไข แล้วใส่ข้อมูลใหม่ลงไป จากนั้นคลิกปุ่ม แก้ไข
+          </div>
+        </form>
+      </>
     )
 
     setData(r)

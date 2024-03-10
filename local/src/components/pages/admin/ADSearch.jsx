@@ -50,13 +50,13 @@ export default function ADSeacrh() {
             </button>
           </div>
 
-          <div className="relative flex-column px-2 mt-3 m-auto">
+          <div className="relative flex-column px-2 mt-3 m-auto table-striped">
             <div>
               <table
-                className=" border-1 border-success table"
+                className=" table mt-3 "
                 style={{ width: '1000px', textAlign: 'center' }}
               >
-                <thead className="  border-3 border-success table ">
+                <thead className="  table-success border-bottom border-bottom-5 ">
                   <tr>
                     <th className=" text-center">#</th>
                     <th className=" text-center">ชื่อ</th>

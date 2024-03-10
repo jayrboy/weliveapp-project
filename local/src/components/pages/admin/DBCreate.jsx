@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 export default function DBCreate() {
   const form = useRef()
   const navigate = useNavigate()
@@ -30,6 +30,14 @@ export default function DBCreate() {
 
   return (
     <>
+      <div className="m-2 row-cols-auto">
+        <h3 className="text-start">
+          <Link to="/admin/home" className="  text-decoration-none">
+            WE LIVE |
+          </Link>{' '}
+          <span className="text-success"> เพิ่มสินค้าใหม่ </span>
+        </h3>
+      </div>
       <div
         className="card mt-5 mx-auto p-4 rounded"
         style={{ width: '400px', background: '#fff' }}

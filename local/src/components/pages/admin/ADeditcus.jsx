@@ -136,7 +136,7 @@ export default function ADeditcus() {
           <div className="m-3 border-gray border-bottom ">
             <h5>ประวัติการซื้อขายของลูกค้า</h5>
           </div>
-          <table className=" table mt-3">
+          <table className=" table mt-3 table-striped">
             <thead className=" table-success border-bottom border-bottom-5 ">
               <tr className=" text-center">
                 <th>#</th>
