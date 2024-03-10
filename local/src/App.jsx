@@ -25,6 +25,7 @@ import ADinvoice from './components/pages/admin/ADinvoice'
 import ADexpress from './components/pages/admin/ADexpress'
 import ADSales from './components/pages/admin/ADSales'
 import ADSeacrh from './components/pages/admin/ADSearch'
+import ResponsiveAppBar from './layout/ResponsiveAppBar'
 
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
@@ -67,6 +68,7 @@ function App() {
     <React.Fragment>
       <CssBaseline />
       {/* Public */}
+
       <Routes>
         <Route
           path="*"
@@ -75,6 +77,15 @@ function App() {
               title="404"
               content="The page you are looking for does not exist."
             />
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <>
+              <ResponsiveAppBar />
+              <HomeUser />
+            </>
           }
         />
         <Route path="/register" element={<Register />} />
