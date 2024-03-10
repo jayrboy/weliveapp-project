@@ -1,9 +1,6 @@
 export default function ADexpress() {
   return (
-    <form
-      className="relative flex-column px-2 mt-3 m-auto"
-      style={{ height: '1000px', width: '800px' }}
-    >
+    <form className="relative flex-column px-2 mt-3 m-auto">
       <div className=" my-6 flex-column d-md-grid bg-white p-4 overflow-y-visible  justify-content-around rounded-3">
         <table className="table table-striped table-warning border-bottom border-2 ">
           <thead className=" border-2 ">
@@ -15,6 +12,7 @@ export default function ADexpress() {
               <th className="text-center">ส่งฟรีเมื่อยอดถึง</th>
               <th className="text-center">ค่าส่งเพิ่มเติม COD</th>
               <th className="text-center">วันที่เริ่มต้น</th>
+              <th className="text-center">{}</th>
               <th className="text-center">{}</th>
             </tr>
           </thead>
@@ -71,7 +69,10 @@ export default function ADexpress() {
                 />
               </th>
               <th className="text-center">
-                <button className=" bg-danger">ลบ</button>
+                <button className=" btn btn-sm bg-warning">แก้ไข</button>
+              </th>
+              <th className="text-center">
+                <button className="btn btn-sm bg-danger">ลบ</button>
               </th>
             </tr>
           </tbody>

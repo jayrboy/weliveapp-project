@@ -114,7 +114,7 @@ export default function DBCreate() {
       </div>
       <br />
       <div className="d-flex justify-content-center">
-        <a href="/" className="btn btn-light btn-sm">
+        <a href="/admin/home" className="btn btn-light btn-sm">
           กลับหน้าหลัก
         </a>
       </div>

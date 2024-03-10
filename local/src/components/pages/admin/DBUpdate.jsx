@@ -208,7 +208,7 @@ export default function DBUpdate() {
       <div id="data">{data}</div>
       <br />
       <div className="d-flex justify-content-center mx-auto">
-        <a href="http://localhost:5173/" className="btn btn-light btn-sm">
+        <a href="/admin/home" className="btn btn-light btn-sm">
           หน้าหลัก
         </a>
       </div>

@@ -167,6 +167,9 @@ export default function Login() {
                 Forgot password?
               </Link>
             </Grid>
+            <Link href="http://localhost:5173/" variant="body2">
+              Home
+            </Link>
           </Grid>
           <Copyright sx={{ mt: 5 }} />
         </Box>

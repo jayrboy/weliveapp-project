@@ -1,22 +1,19 @@
 export default function ADSales() {
   return (
-    <form
-      className="card mt-3 ms-3 overflow-scroll"
-      style={{ width: '1290px', height: '1980' }}
-    >
-      <div className=" p-2 border-bottom border-1 mt-3 ">
+    <form className="card mt-3 ms-3">
+      <div className=" p-2 border-1 mt-3 mb-5 ">
         <div className="ms-3">
           <span>วันที่ : </span>
-          <input type="date" className=" rounded ms-1 w-50"></input>
+          <input type="date" className=" rounded ms-1"></input>
           <button className="btn btn-sm btn-success mt-3 ms-3 mb-3">
             {' '}
             ค้นหา{' '}
           </button>
         </div>
 
-        <div className="relative flex-column px-2 mt-2 m-auto">
+        <div className="relative flex-column px-2 mt-2">
           <div>
-            <table className=" border-1 border-success table small text-center d-sm-table-cell w-100">
+            <table className=" border-1 border-success table text-center ">
               <thead className="  border-3 border-success table  ">
                 <tr>
                   <th className=" text-center ">#</th>

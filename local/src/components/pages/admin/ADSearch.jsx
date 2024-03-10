@@ -1,9 +1,6 @@
 export default function ADSeacrh() {
   return (
-    <form
-      className="card mt-3 ms-3"
-      style={{ width: '1290px', height: '1980' }}
-    >
+    <form className="card align-items-center">
       <div className=" p-2 border-bottom border-1 mt-3 ">
         <div className="ms-3">
           <span>ชื่อ : </span>
