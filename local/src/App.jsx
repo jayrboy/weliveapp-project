@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 import { CssBaseline } from '@mui/material'
 
@@ -8,6 +8,7 @@ import Register from './components/pages/auth/Register'
 import Login from './components/pages/auth/Login'
 import AdminRoute from './routes/AdminRoute'
 import UserRoute from './routes/UserRoute'
+import NotFound from './components/pages/NotFound'
 
 import HomeUser from './components/pages/user/HomeUser'
 import HomeAdmin from './components/pages/admin/HomeAdmin'
@@ -67,7 +68,15 @@ function App() {
       <CssBaseline />
       {/* Public */}
       <Routes>
-        <Route path="*" errorElement={<Navigate to="/" />} />
+        <Route
+          path="*"
+          element={
+            <NotFound
+              title="404"
+              content="The page you are looking for does not exist."
+            />
+          }
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
