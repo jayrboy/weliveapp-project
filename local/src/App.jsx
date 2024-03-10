@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+/* eslint-disable */
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import { CssBaseline } from '@mui/material'
@@ -31,36 +32,35 @@ import { login } from './redux/userSlice'
 function App() {
   // TODO:
   const dispatch = useDispatch()
+  const userToken = localStorage.getItem('token') || ''
 
-  const userToken = localStorage.getItem('token')
-  // console.log({ token: userToken })
-  if (!userToken) {
-    console.log('ไม่พบ token') // แสดง alert ให้ผู้ใช้ทราบว่าไม่พบ token
+  if (userToken === '') {
+    console.log('Token not found in localStorage')
   }
+  console.log({ token: userToken })
 
-  const currentUser = async (authtoken) =>
-    await axios.post(
-      '/api/current-user',
-      {},
-      {
-        headers: { authtoken },
-      }
-    )
-
-  currentUser(userToken)
-    .then((result) => {
-      // console.log(result)
-      dispatch(
-        login({
-          username: result.data.username,
-          role: result.data.role,
-          token: userToken,
-        })
+  const axiosFetch = async (authToken) =>
+    await axios
+      .post(
+        '/api/current-user',
+        {},
+        {
+          headers: { authToken },
+        }
       )
-    })
-    .catch((err) =>
-      console.log('Runtime Error 1 ปัญหาไม่เจอ Token: ', err.message)
-    )
+      .then((result) => {
+        console.log(result)
+        dispatch(
+          login({
+            username: result.data.username,
+            role: result.data.role,
+            token: authToken,
+          })
+        )
+      })
+      .catch((err) => console.log(err))
+
+  axiosFetch(userToken)
 
   return (
     <React.Fragment>
