@@ -1,118 +1,140 @@
+import Selectbar from '../../../assets/selectbar'
+import { styled } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+import MyComponent from '../../../assets/date'
+import { orderdetail } from '../../../data'
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}))
+
 export default function USinvoice() {
   return (
-    <form
-      className="relative flex-column px-2 mt-3 m-auto overflow-scroll"
-      style={{ height: '1000px' }}
-    >
-      <div
-        className=" my-6 flex-grow-1 d-md-grid bg-white p-4 shadow-sm overflow-y-visible border-warning justify-content-around m-auto "
-        style={{ width: '500px' }}
-      >
-        {/* my-6 flex-1 space-y-2 rounded-md bg-white p-4 shadow-sm sm:space-y-4
-        md:p-6 */}
-        <div className=" flex-column justify-content-between space-y-2 border-bottom border-info pb-4 md:flex-row md:items-center md:space-y-0">
-          <div className="flex space-x-2">
-            <span className=" font-monospace">Current Date:</span>
-            <span> 09/03/2024 </span>
-          </div>
-          <div className="flex align-items-md-center">
-            <label className=" font-monospace">รหัสคำสั่งซื้อ :</label>
-            <label>#44596e</label>
-          </div>
-        </div>
-        <h1 className=" text-center text-lg-center font-monospace p-3">
-          แจ้งชำระเงิน
-        </h1>
-        <div>
-          <label className=" ">ชื่อลูกค้า : </label>
-          <br />
-          <input
-            required
-            placeholder='" นายเจษฎากร คุ้มเดช "'
-            type="text"
-            name="customerName"
-          ></input>
-          <br />
-          <br />
-          <label>ที่อยู่ : </label>
-          <br />
-          <textarea
-            style={{ width: '400px', height: ' 100px' }}
-            required
-            placeholder='" คอนโด ASDWR ตึก 99 12/123 เขต จอมพล แขวง จตุจักร จังหวัด กรุงเทพ 10900 "'
-            type="text"
-            name="customerName"
-          ></textarea>
-          <br />
-          <label className=" mt-2">เลือกขนส่ง</label>
-          <input required type="radio" className=" ms-5"></input>
-          <span> Flash </span>
-          <input required type="radio" className=" ms-5"></input>
-          <span> J&B </span>
-          <input required type="radio" className=" ms-5"></input>{' '}
-          <span> Shoppee </span>
-          <input required type="radio" className=" ms-5"></input>
-          <span> EMS THAI </span>
-          <br />
-          <label className="mt-3">
-            <span className=" text-danger p-1">
-              อัพโหลดสลิปโอนเงิน
-              <input type="file" className="p-2"></input>
-            </span>
-          </label>
-        </div>
-        <br />
-        <table className=" w-100 p-4 align-content-md-start text-center">
-          <thead>
-            <tr className=" border-success">
-              <th>สินค้า</th>
-              <th>ราคา</th>
-              <th>ราคารวม</th>
-              <th>{}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <p> * พื้นที่ import CF CODE</p>
-              </td>
-              <td>
-                <p> * พื้นที่ import price</p>
-              </td>
-              <td>
-                <p> * พื้นที่ import รวมราคา</p>
-              </td>
-              <td className=" flex-fill align-items-center justify-content-center"></td>
-            </tr>
-          </tbody>
-        </table>
-        <div className=" flex-column carousel-item-end pt-5 w-100">
-          <div className="">
-            <span className=" p-5">Subtotal :</span>
-            <span className=""> ฿ 199</span>
-          </div>
-          <div className="">
-            <span className=" p-5">Discount :</span>
-            <span className=" text-danger"> ( 0 % ) ฿ 0 </span>
-          </div>
-          <div className="">
-            <span className="p-5">Tax :</span>
-            <span> ( 0 % ) ฿ 0 </span>
-          </div>
-          <div className=" flex-fill w-100 justify-content-between border-top border-2 pt-2 m-md-1">
-            <span className=" font-monospace "> Total</span>
-            <span className=" font-monospace"> ฿ 0</span>
-          </div>
-        </div>
-      </div>
+    <div className=" position-relative mt-5 ">
+      <h3 className=" m-3">
+        <span>We Live</span>
+        <span className=" text-success ms-2">| ชำระสินค้า</span>
+      </h3>
+      <div className="m-2">
+        {orderdetail.map((detail, i) => {
+          if (detail.from.fbName == 'Wittaya R.')
+            // ใช้ในการกำหนด ให้ชื่อ user ตรงกับออเดอร์เท่านั้นถึงจะโชว์ให้จ่ายเงิน
+            return (
+              <div className="card card-header mb-3 bg-warning bg-opacity-75 ">
+                <Box sx={{ flexGrow: 1 }} className="m-3">
+                  <Grid container spacing={3} key={detail.id}>
+                    <Grid item xs={2}>
+                      <Item className="bg-primary text-white">
+                        <h5>ออเดอร์ # {detail.from.orderID}</h5>
+                      </Item>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Item className=" bg-info-subtle text-center">
+                        <h5>Facebook name : {detail.from.fbName}</h5>
+                      </Item>
+                    </Grid>
+                    <Grid item xs={5}>
+                      <Item className=" bg-info-subtle text-center">
+                        <MyComponent />
+                      </Item>
+                    </Grid>
+                  </Grid>
+                </Box>
 
-      <div className="text-center mt-3">
-        <div>
-          <button className="btn btn-sm btn-primary">
-            <span>ส่งแบบฟอร์มยืนยันการชำระเงิน</span>
-          </button>
-        </div>
+                <div className="card card-body">
+                  <table className="table">
+                    <thead className="table-success">
+                      <tr>
+                        <th className="text-center">#</th>
+                        <th className="text-center">รายการ</th>
+                        <th className="text-center">จำนวน</th>
+                        <th className="text-center">ราคา</th>
+                      </tr>
+                    </thead>
+                    <tbody className=" table-striped">
+                      <tr key={detail.id}>
+                        <th className="text-center">{i + 1}</th>
+                        <th className="text-center">
+                          {detail.from.itemId} | {detail.from.itemNm}
+                        </th>
+                        <th className="text-center">
+                          {detail.from.among} ชิ้น
+                        </th>
+                        <th className="text-center">
+                          {detail.from.itempr} บาท{' '}
+                        </th>
+                      </tr>
+                      <tr>
+                        <th className="text-center">{}</th>
+                        <th className="text-center">ส่วนลด</th>
+                        <th className="text-center">{}</th>
+                        <th className="text-center">
+                          {detail.from.discount} บาท
+                        </th>
+                      </tr>
+                      <tr>
+                        <th className="text-center">{}</th>
+                        <th className="text-center">
+                          <Selectbar />
+                        </th>
+                        <th className="text-center">{}</th>
+                        <th className="text-center text-danger">
+                          รอดึงราคาจาก expressdetail
+                        </th>
+                      </tr>
+                      <tr>
+                        <th className="text-center">{}</th>
+                        <th className="text-center">รวม</th>
+                        <th className="text-center">
+                          {detail.from.among} ชิ้น
+                        </th>
+                        <th className="text-center text-danger">
+                          รอ ฟังก์ชั่นในการรวมราคา
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div>
+                    <h5>
+                      <span className="text-success">เลือก </span> |
+                      วันเวลาที่โอน
+                    </h5>
+                    <input type="date" className=" w-25 float-start" />
+                    <input type="time" className=" w-25 ms-3" />
+                  </div>
+                  <div className="mt-3">
+                    <h5>จำนวนเงิน</h5>
+                    <input
+                      type="number"
+                      className=" w-25"
+                      placeholder="กรอกตัวเลขเท่านั้น"
+                    ></input>
+                  </div>
+                  <div className="mt-3">
+                    <h5>อัพโหลดภาพสลิป</h5>
+                    <input type="file"></input>
+                  </div>
+                </div>
+                <div className="text-center mt-2">
+                  <button className="btn btn-sm btn-primary">
+                    ส่งแบบฟอร์มชำระเงิน
+                  </button>
+                  <button className="btn btn-sm btn-danger ms-3">
+                    ยกเลิกคำสั่งซื้อนี้
+                  </button>
+                </div>
+              </div>
+            )
+        })}
       </div>
-    </form>
+      <div className="text-center"></div>
+    </div>
   )
 }

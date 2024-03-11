@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import img1 from '../../../assets/SimulateOrderBill.png'
+import { orderdetail } from '../../../data'
+
 export default function USorder() {
   return (
     <>
@@ -17,31 +18,28 @@ export default function USorder() {
           </thead>
 
           <tbody className="table-group-divider">
-            {/* {result.map((doc) => {
-              let dt = new Date(Date.parse(doc.date_added))
-              let df = (
-                <>
-                  {dt.getDate()}-{dt.getMonth() + 1}-{dt.getFullYear()}
-                </>
+            {orderdetail.map((detail) => {
+              // คำนวณค่า itempr * among - discount
+
+              return (
+                <tr key={detail.id}>
+                  <td className="text-center"># {detail.from.orderID}</td>
+                  <td className="text-center"> {detail.from.express} </td>
+                  <td className="text-center"> {detail.from.trName} </td>
+                  <td className="text-center text-danger">รอใส่ราคารวม</td>
+                  <td className="text-center">{detail.from.date}</td>
+                  <td>
+                    <div>
+                      <Link to="/db/userinvoice">รายละเอียด</Link>
+                    </div>
+                  </td>
+                </tr>
               )
-              let p = new Intl.NumberFormat().format(doc.price)
-              let c = new Intl.NumberFormat().format(doc.cost) 
-            return (*/}
-            <tr>
-              <td className="text-center">12345EIGQSANG</td>
-              <td className="text-center">FAST COMPANY</td>
-              <td className="text-center"> เจษฎากร คุ้มเดช </td>
-              <td className="text-center">฿ 239</td>
-              <td className="text-center">03/04/22</td>
-              <td>
-                <div>
-                  <Link to="/db/userinvoice">รายละเอียด</Link>
-                </div>
-              </td>
-            </tr>
+            })}
           </tbody>
         </table>
       </div>
+
       <div className=" align-items-center text-center mt-3">
         <Link
           to="/user/home"
