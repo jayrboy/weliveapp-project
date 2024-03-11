@@ -12,16 +12,14 @@ export const userSlice = createSlice({
     login: (state, action) => {
       state.user = action.payload
     },
-    logout: (state, action) => {
-      state.user = action.payload
-    },
-    incrementByAmount: (state, action) => {
-      state.user += action.payload
+    logout: (state) => {
+      state.user = []
+      localStorage.clear()
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { login, logout, incrementByAmount } = userSlice.actions
+export const { login, logout } = userSlice.actions
 
 export default userSlice.reducer

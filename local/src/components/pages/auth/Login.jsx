@@ -22,7 +22,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
         WE Live App
       </Link>{' '}
       {new Date().getFullYear()}
@@ -74,7 +74,7 @@ export default function Login() {
     if (role === 'admin') {
       navigate('/admin/home')
     } else {
-      navigate('/')
+      navigate('/user/home')
     }
   }
 
@@ -167,9 +167,11 @@ export default function Login() {
                 Forgot password?
               </Link>
             </Grid>
-            <Link href="http://localhost:5173/" variant="body2">
-              Home
-            </Link>
+            <Grid item>
+              <Link href="/register" variant="body2">
+                Register
+              </Link>
+            </Grid>
           </Grid>
           <Copyright sx={{ mt: 5 }} />
         </Box>

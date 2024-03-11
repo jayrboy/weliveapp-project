@@ -14,37 +14,47 @@ import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 // import AdbIcon from '@mui/icons-material/Adb'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined'
 import LoginIcon from '@mui/icons-material/Login'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../redux/userSlice'
+
 const pages = [
   {
-    title: 'Product',
+    title: 'หน้าหลัก',
     icon: '',
-    to: '/product',
+    to: '/',
   },
   {
-    title: 'Service',
+    title: 'ผลิตภัณฑ์ของเรา',
     icon: '',
     to: '/service',
   },
   {
-    title: 'Contract',
+    title: 'เกี่ยวกับเรา',
     icon: '',
-    to: '/contract',
+    to: '/about',
+  },
+]
+const authUser = [
+  {
+    title: 'สินค้าในตะกร้า',
+    icon: '',
+    to: '/user/order',
+  },
+  {
+    title: 'คำสั่งซื้อ',
+    icon: '',
+    to: '/user/invoice',
   },
 ]
 
-const authen = [
+const linkAuth = [
   {
-    title: 'Register',
-    icon: <PeopleAltOutlinedIcon />,
-    to: '/register',
-  },
-  {
-    title: 'Login',
+    title: 'Login / Register',
     icon: <LoginIcon />,
     to: '/login',
   },
@@ -57,13 +67,25 @@ const settings = [
     to: '/profile',
   },
   {
-    title: 'Dashboard',
+    title: 'Logout',
     icon: '',
-    to: '/',
+    to: '#',
   },
 ]
 
-function ResponsiveAppBar() {
+const ResponsiveAppBar = () => {
+  const { user } = useSelector((state) => state.user)
+  // console.log('ResponsiveAppBar', user)
+  // console.log(user.length)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const onClickLogout = () => {
+    dispatch(logout())
+    handleCloseUserMenu()
+    navigate('/')
+  }
+
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
 
@@ -103,12 +125,12 @@ function ResponsiveAppBar() {
             }}
           >
             <IconButton>
-              <Avatar alt="Remy Sharp" src={logo} />
+              <Avatar alt="logo" src={logo} />
             </IconButton>
           </Typography>
           {/* /LOGO */}
 
-          {/* Minimize Menu */}
+          {/* Mobile Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -116,7 +138,7 @@ function ResponsiveAppBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="default"
             >
               <MenuIcon />
             </IconButton>
@@ -146,19 +168,29 @@ function ResponsiveAppBar() {
                   </Link>
                 </MenuItem>
               ))}
+              {/* Menu Mobile User Auth */}
+              {user.length != 0 &&
+                authUser.map((page, index) => (
+                  <MenuItem key={index} onClick={handleCloseNavMenu}>
+                    <Link to={page.to} style={{ textDecoration: 'none' }}>
+                      <Typography textAlign="center">{page.title}</Typography>
+                    </Link>
+                  </MenuItem>
+                ))}
 
-              {authen.map((page, index) => (
-                <MenuItem key={index} onClick={handleCloseNavMenu}>
-                  <Link to={page.to} style={{ textDecoration: 'none' }}>
-                    <Typography textAlign="center">{page.title}</Typography>
-                  </Link>
-                </MenuItem>
-              ))}
+              {user.length === 0 &&
+                linkAuth.map((page, index) => (
+                  <MenuItem key={index} onClick={handleCloseNavMenu}>
+                    <Link to={page.to} style={{ textDecoration: 'none' }}>
+                      <Typography textAlign="center">{page.title}</Typography>
+                    </Link>
+                  </MenuItem>
+                ))}
             </Menu>
           </Box>
-          {/* /Minimize Menu */}
+          {/* /Mobile Menu */}
 
-          {/* LOGO Minimize */}
+          {/* LOGO Mobile */}
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant="h5"
@@ -177,10 +209,10 @@ function ResponsiveAppBar() {
             }}
           >
             <IconButton>
-              <Avatar alt="Remy Sharp" src={logo} />
+              <Avatar alt="logo" src={logo} />
             </IconButton>
           </Typography>
-          {/* /LOGO Minimize */}
+          {/* /LOGO Mobile */}
 
           {/* Menu Left Full */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -189,73 +221,100 @@ function ResponsiveAppBar() {
                 <Link to={page.to}>
                   <Button
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'white', mr: 5 }}
+                    sx={{ my: 2, color: 'black', mr: 5 }}
                   >
                     {page.title}
                   </Button>
                 </Link>
               </React.Fragment>
             ))}
+            {/* Menu Desktop User Auth */}
+            {user.length != 0 &&
+              authUser.map((page, index) => (
+                <React.Fragment key={index}>
+                  <Link to={page.to}>
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{ my: 2, color: 'black', mr: 5 }}
+                    >
+                      {page.title}
+                    </Button>
+                  </Link>
+                </React.Fragment>
+              ))}
           </Box>
           {/* /Menu Left Full */}
 
           {/* Menu Right Full */}
           <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-            {authen.map((page, index) => (
-              <React.Fragment key={index}>
-                <Link to={page.to}>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      my: 2,
-                      color: 'white',
-                      mr: 2,
-                    }}
-                    startIcon={page.icon}
-                  >
-                    {page.title}
-                  </Button>
-                </Link>
-              </React.Fragment>
-            ))}
+            {user.length === 0 &&
+              linkAuth.map((page, index) => (
+                <React.Fragment key={index}>
+                  <Link to={page.to}>
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{
+                        my: 2,
+                        color: 'black',
+                        mr: 2,
+                      }}
+                      startIcon={page.icon}
+                    >
+                      {page.title}
+                    </Button>
+                  </Link>
+                </React.Fragment>
+              ))}
           </Box>
           {/* /Menu Right Full */}
 
           {/* User Menu */}
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://obs.line-scdn.net/0hSo0b4ow9DEANGx4MvxpzFzVNADE-fRZJLy9HcSgYB3EgN0wVZipfIy8fW2wpIksVLXgUciEcWnZzKEoXMA/w1200"
-                />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting, index) => (
-                <MenuItem key={index} onClick={handleCloseUserMenu}>
-                  <Link to={setting.to} style={{ textDecoration: 'none' }}>
-                    <Typography textAlign="center">{setting.title}</Typography>
-                  </Link>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          {user.length != 0 && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="https://obs.line-scdn.net/0hSo0b4ow9DEANGx4MvxpzFzVNADE-fRZJLy9HcSgYB3EgN0wVZipfIy8fW2wpIksVLXgUciEcWnZzKEoXMA/w1200"
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting, index) => (
+                  <MenuItem
+                    key={index}
+                    onClick={
+                      setting.title == 'Logout'
+                        ? onClickLogout
+                        : handleCloseUserMenu
+                    }
+                  >
+                    <Link to={setting.to} style={{ textDecoration: 'none' }}>
+                      <Typography textAlign="center">
+                        {setting.title}
+                      </Typography>
+                    </Link>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          )}
+
           {/* /User Menu */}
         </Toolbar>
       </Container>

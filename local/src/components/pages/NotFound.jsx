@@ -17,7 +17,7 @@ const NotFound = ({ text }) => {
           <Grid xs={6}>
             <Typography variant="h1">404</Typography>
             <Typography variant="h6">{text}</Typography>
-            <Link to="/login">
+            <Link to="/">
               <Button variant="contained">Back Home</Button>
             </Link>
           </Grid>

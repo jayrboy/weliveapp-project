@@ -12,25 +12,28 @@ import NotFound from './components/pages/NotFound'
 
 import HomeUser from './components/pages/user/HomeUser'
 import HomeAdmin from './components/pages/admin/HomeAdmin'
+import Stock from './components/pages/admin/Stock'
 import DBCreate from './components/pages/admin/DBCreate'
 import DBUpdate from './components/pages/admin/DBUpdate'
 import DBDelete from './components/pages/admin/DBDelete'
 import DBCart from './components/pages/admin/DBCart'
 import DBOrder from './components/pages/admin/DBOrder'
 import DBCFCode from './components/pages/admin/DBCFCode'
-import Stock from './components/pages/admin/Stock'
-import USorder from './components/pages/user/USorder'
-import USinvoice from './components/pages/user/USinvoice'
 import ADinvoice from './components/pages/admin/ADinvoice'
 import ADexpress from './components/pages/admin/ADexpress'
 import ADSales from './components/pages/admin/ADSales'
 import ADSeacrh from './components/pages/admin/ADSearch'
+import SearchbyOrder from './components/pages/admin/SearchbyOrder'
+
 import ResponsiveAppBar from './layout/ResponsiveAppBar'
+import USorder from './components/pages/user/USorder'
+import USinvoice from './components/pages/user/USinvoice'
+import Service from './components/pages/user/Service'
+import About from './components/pages/user/About'
 
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { login } from './redux/userSlice'
-import SearchbyOrder from './components/pages/admin/SearchbyOrder'
 
 function App() {
   // TODO:
@@ -74,10 +77,7 @@ function App() {
         <Route
           path="*"
           element={
-            <NotFound
-              title="404"
-              content="The page you are looking for does not exist."
-            />
+            <NotFound text="The page you are looking for does not exist." />
           }
         />
         <Route
@@ -91,18 +91,50 @@ function App() {
         />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/service"
+          element={
+            <>
+              <ResponsiveAppBar />
+              <Service />
+            </>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <>
+              <ResponsiveAppBar />
+              <About />
+            </>
+          }
+        />
 
         {/* User */}
         <Route
-          path="/"
+          path="/user/home"
           element={
             <UserRoute>
               <HomeUser />
             </UserRoute>
           }
         />
-        <Route path="/db/userorder" element={<USorder />} />
-        <Route path="/db/userinvoice" element={<USinvoice />} />
+        <Route
+          path="/user/order"
+          element={
+            <UserRoute>
+              <USorder />
+            </UserRoute>
+          }
+        />
+        <Route
+          path="/user/invoice"
+          element={
+            <UserRoute>
+              <USinvoice />
+            </UserRoute>
+          }
+        />
 
         {/* Admin */}
         <Route
@@ -114,7 +146,7 @@ function App() {
           }
         />
         <Route
-          path="/db/searchbyorder"
+          path="/search/by-order"
           element={
             <AdminRoute>
               <SearchbyOrder />
@@ -122,7 +154,7 @@ function App() {
           }
         />
         <Route
-          path="/stock"
+          path="/admin/stock"
           element={
             <AdminRoute>
               <Stock />
@@ -178,7 +210,7 @@ function App() {
           }
         />
         <Route
-          path="/db/cfcode"
+          path="/admin/cf-code"
           element={
             <AdminRoute>
               <DBCFCode />
@@ -186,7 +218,7 @@ function App() {
           }
         />
         <Route
-          path="/db/admininvoice"
+          path="/admin/invoice"
           element={
             <AdminRoute>
               <ADinvoice />
@@ -194,7 +226,7 @@ function App() {
           }
         />
         <Route
-          path="/db/adminexpress"
+          path="/admin/express"
           element={
             <AdminRoute>
               <ADexpress />
@@ -202,7 +234,7 @@ function App() {
           }
         />
         <Route
-          path="/db/adminsales"
+          path="/admin/sales"
           element={
             <AdminRoute>
               <ADSales />
@@ -210,7 +242,7 @@ function App() {
           }
         />
         <Route
-          path="/db/adminsearch"
+          path="/admin/search"
           element={
             <AdminRoute>
               <ADSeacrh />

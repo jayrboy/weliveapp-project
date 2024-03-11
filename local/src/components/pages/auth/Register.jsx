@@ -17,7 +17,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
         WE Live App
       </Link>{' '}
       {new Date().getFullYear()}
@@ -127,9 +127,6 @@ export default function Register() {
             >
               Register
             </Button>
-            <Link href="http://localhost:5173/" variant="body2">
-              Home
-            </Link>
           </Box>
           {/* Footer */}
           <Copyright sx={{ mt: 5 }} />

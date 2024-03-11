@@ -2,13 +2,25 @@ import logo from '../assets/logo-we.png'
 
 import { useState } from 'react'
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material'
-import InputBase from '@mui/material/InputBase'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
-import SearchIcon from '@mui/icons-material/Search'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { logout } from '../redux/userSlice'
 
 const HeaderBar = () => {
+  const { user } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const onClickLogout = () => {
+    dispatch(logout())
+    handleClose()
+    navigate('/')
+  }
+
   const [anchorEl, setAnchorEl] = useState(null)
 
   const handleMenu = (event) => {
@@ -66,7 +78,7 @@ const HeaderBar = () => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={onClickLogout}>Logout</MenuItem>
           </Menu>
         </IconButton>
       </Box>

@@ -19,6 +19,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined'
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined'
 import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined'
+
 const SideBar = () => {
   const [isCollapsed, setisCollapsed] = useState(true)
   const [toggled, setToggled] = useState(false)
@@ -78,7 +79,7 @@ const SideBar = () => {
               <SubMenu icon={<MapOutlinedIcon />} label="Data">
                 <MenuItem
                   icon={<TableViewIcon />}
-                  onClick={() => navigate('/stock')}
+                  onClick={() => navigate('/admin/stock')}
                 >
                   คลังสินค้า
                 </MenuItem>
@@ -106,7 +107,7 @@ const SideBar = () => {
 
                 <MenuItem
                   icon={<DataObjectOutlinedIcon />}
-                  onClick={() => navigate('/db/cfcode')}
+                  onClick={() => navigate('/admin/cf-code')}
                 >
                   จัดการ CF CODE
                 </MenuItem>
@@ -118,39 +119,27 @@ const SideBar = () => {
               >
                 <MenuItem
                   icon={<PersonSearchOutlinedIcon />}
-                  onClick={() => navigate('/db/adminsearch')}
+                  onClick={() => navigate('/admin/search')}
                 >
                   ค้นหาลูกค้า
                 </MenuItem>
                 <MenuItem
                   icon={<PersonSearchOutlinedIcon />}
-                  onClick={() => navigate('/db/searchbyorder')}
+                  onClick={() => navigate('/search/by-order')}
                 >
                   ค้นหาคำสั่งซื้อ
                 </MenuItem>
                 <MenuItem
                   icon={<SettingsSuggestOutlinedIcon />}
-                  onClick={() => navigate('/db/adminexpress')}
+                  onClick={() => navigate('/admin/express')}
                 >
                   ค่าขนส่ง
                 </MenuItem>
                 <MenuItem
                   icon={<PaidOutlinedIcon />}
-                  onClick={() => navigate('/db/adminsales')}
+                  onClick={() => navigate('/admin/sales')}
                 >
                   <span className=" text-success">ยอดขาย</span>
-                </MenuItem>
-              </SubMenu>
-
-              <SubMenu
-                label="พื้นที่สำหรับ User"
-                icon={<PersonOutlineOutlinedIcon />}
-              >
-                <MenuItem onClick={() => navigate('/db/userinvoice')}>
-                  Invoice
-                </MenuItem>
-                <MenuItem onClick={() => navigate('/db/userorder')}>
-                  ใบออเดอร์
                 </MenuItem>
               </SubMenu>
             </Menu>
