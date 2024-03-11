@@ -12,6 +12,7 @@ import NotFound from './components/pages/NotFound'
 
 import HomeUser from './components/pages/user/HomeUser'
 import HomeAdmin from './components/pages/admin/HomeAdmin'
+
 import Stock from './components/pages/admin/Stock'
 import DBCreate from './components/pages/admin/DBCreate'
 import DBUpdate from './components/pages/admin/DBUpdate'
@@ -24,6 +25,8 @@ import ADexpress from './components/pages/admin/ADexpress'
 import ADSales from './components/pages/admin/ADSales'
 import ADSeacrh from './components/pages/admin/ADSearch'
 import SearchbyOrder from './components/pages/admin/SearchbyOrder'
+import ManageUser from './components/pages/ManageUser'
+
 
 import ResponsiveAppBar from './layout/ResponsiveAppBar'
 import USorder from './components/pages/user/USorder'
@@ -43,7 +46,7 @@ function App() {
   if (userToken === '') {
     console.log('Token not found in localStorage')
   }
-  console.log({ token: userToken })
+  // console.log({ token: userToken })
 
   const axiosFetch = async (authToken) =>
     await axios
@@ -55,7 +58,7 @@ function App() {
         }
       )
       .then((result) => {
-        console.log(result)
+        // console.log(result)
         dispatch(
           login({
             username: result.data.username,
@@ -246,6 +249,14 @@ function App() {
           element={
             <AdminRoute>
               <ADSeacrh />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/manage"
+          element={
+            <AdminRoute>
+              <ManageUser />
             </AdminRoute>
           }
         />

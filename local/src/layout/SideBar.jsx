@@ -15,10 +15,14 @@ import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCa
 import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined'
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined'
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined'
 import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined'
+import PersonIcon from '@mui/icons-material/Person'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch'
+import StorefrontIcon from '@mui/icons-material/Storefront'
 
 const SideBar = () => {
   const [isCollapsed, setisCollapsed] = useState(true)
@@ -76,7 +80,7 @@ const SideBar = () => {
                 Dashboard
               </MenuItem>
 
-              <SubMenu icon={<MapOutlinedIcon />} label="Data">
+              <SubMenu icon={<MapOutlinedIcon />} label="ทรัพย์สิน">
                 <MenuItem
                   icon={<TableViewIcon />}
                   onClick={() => navigate('/admin/stock')}
@@ -113,10 +117,7 @@ const SideBar = () => {
                 </MenuItem>
               </SubMenu>
 
-              <SubMenu
-                label="พื้นที่สำหรับ Admin"
-                icon={<AdminPanelSettingsOutlinedIcon />}
-              >
+              <SubMenu label="ร้านค้า" icon={<StorefrontIcon />}>
                 <MenuItem
                   icon={<PersonSearchOutlinedIcon />}
                   onClick={() => navigate('/admin/search')}
@@ -141,6 +142,22 @@ const SideBar = () => {
                 >
                   <span className=" text-success">ยอดขาย</span>
                 </MenuItem>
+              </SubMenu>
+
+              {/* Mange Admin & User */}
+              <SubMenu label="Admin" icon={<AdminPanelSettingsIcon />}>
+                <MenuItem
+                  icon={<PeopleOutlinedIcon />}
+                  onClick={() => navigate('/admin/manage')}
+                >
+                  Users
+                </MenuItem>
+                {/* <MenuItem
+                  icon={<AdminPanelSettingsIcon />}
+                  onClick={() => navigate('#')}
+                >
+                  Admin
+                </MenuItem> */}
               </SubMenu>
             </Menu>
 

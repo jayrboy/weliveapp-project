@@ -15,27 +15,28 @@ const AdminRoute = ({ children }) => {
 
   useEffect(() => {
     if (user.token) {
-      const axiosFetch = async (authToken) =>
-        await axios
-          .post(
-            '/api/current-admin',
-            {},
-            {
-              headers: { authToken },
-            }
-          )
-          .then((result) => {
-            console.log(result)
-            setLoading(true)
-          })
-          .catch((err) => {
-            console.log(err)
-            setLoading(false)
-          })
       axiosFetch(user.token)
     }
   }, [user])
   // console.log(user.user.role)
+
+  const axiosFetch = async (authToken) =>
+    await axios
+      .post(
+        '/api/current-admin',
+        {},
+        {
+          headers: { authToken },
+        }
+      )
+      .then((result) => {
+        // console.log(result)
+        setLoading(true)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+      })
 
   return loading ? (
     <div className="app">
