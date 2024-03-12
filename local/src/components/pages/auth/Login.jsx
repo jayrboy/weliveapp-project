@@ -15,7 +15,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../../../redux/userSlice'
 
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { FaFacebook } from 'react-icons/fa'
 
 function Copyright(props) {
@@ -168,25 +167,6 @@ export default function Login() {
               Login
             </Button>
             {/* Facebook Login : autoLoad={true} login auto)*/}
-            <FacebookLogin
-              appId="268883909602018"
-              autoLoad={true}
-              scope="public_profile"
-              fields="name,email"
-              callback={responseFacebook}
-              render={(renderProps) => (
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mb: 2 }}
-                  onClick={renderProps.onClick}
-                  startIcon={<FaFacebook />}
-                >
-                  Login With Facebook
-                </Button>
-              )}
-            />
           </Box>
           {/* Footer */}
           <Grid container>

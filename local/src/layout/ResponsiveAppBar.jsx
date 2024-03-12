@@ -1,5 +1,6 @@
 import logo from '../assets/logo.png'
 import React, { useState } from 'react'
+
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -12,11 +13,9 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
-// import AdbIcon from '@mui/icons-material/Adb'
 
 import { Link, useNavigate } from 'react-router-dom'
 
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined'
 import LoginIcon from '@mui/icons-material/Login'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -275,7 +274,7 @@ const ResponsiveAppBar = () => {
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt="Remy Sharp"
-                    src="https://obs.line-scdn.net/0hSo0b4ow9DEANGx4MvxpzFzVNADE-fRZJLy9HcSgYB3EgN0wVZipfIy8fW2wpIksVLXgUciEcWnZzKEoXMA/w1200"
+                    src="https://scontent.fbkk28-1.fna.fbcdn.net/v/t39.30808-6/335067748_943378343326998_4474839827127937759_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=jqDD669fFaUAX8cGjto&_nc_ht=scontent.fbkk28-1.fna&oh=00_AfCXJXR1cswq7IGnhaUbM-8lmCAl160MyOk6Eq3sVV-C-g&oe=65F527A1"
                   />
                 </IconButton>
               </Tooltip>

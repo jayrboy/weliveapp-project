@@ -33,7 +33,8 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     // check user
-    const { username, password } = req.body
+    const { username, password } = req.body || ''
+
     let user = await User.findOneAndUpdate({ username }, { new: true })
 
     if (user) {
@@ -63,30 +64,28 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.post('/current-user', auth, async (req, res) => {
-  try {
-    console.log('currentUser', req.user)
-    const user = await User.findOne({ username: req.user.username })
-      .select('-password')
-      .exec()
-    res.send(user)
-  } catch (error) {
-    console.log({ message: error.message })
-    res.status(500).send('Server Error')
-  }
+router.post('/current-user', auth, (req, res) => {
+  console.log('currentUser', req.user)
+  User.findOne({ username: req.user.username })
+    .select('-password')
+    .exec()
+    .then((docs) => res.send(docs))
+    .catch((err) => {
+      console.log({ message: err.message })
+      res.status(500).send('Server Error')
+    })
 })
 
-router.post('/current-admin', auth, adminCheck, async (req, res) => {
-  try {
-    console.log('currentAdmin', req.user)
-    const user = await User.findOne({ username: req.user.username })
-      .select('-password')
-      .exec()
-    res.send(user)
-  } catch (error) {
-    console.log({ message: error.message })
-    res.status(500).send('Server Error')
-  }
+router.post('/current-admin', auth, adminCheck, (req, res) => {
+  // console.log('currentAdmin', req.user)
+  User.findOne({ username: req.user.username })
+    .select('-password')
+    .exec()
+    .then((docs) => res.send(docs))
+    .catch((err) => {
+      console.log({ message: err.message })
+      res.status(500).send('Server Error')
+    })
 })
 
 export default router

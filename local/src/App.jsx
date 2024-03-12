@@ -27,7 +27,6 @@ import ADSeacrh from './components/pages/admin/ADSearch'
 import SearchbyOrder from './components/pages/admin/SearchbyOrder'
 import ManageUser from './components/pages/ManageUser'
 
-
 import ResponsiveAppBar from './layout/ResponsiveAppBar'
 import USorder from './components/pages/user/USorder'
 import USinvoice from './components/pages/user/USinvoice'
@@ -41,35 +40,36 @@ import { login } from './redux/userSlice'
 function App() {
   // TODO:
   const dispatch = useDispatch()
-  const userToken = localStorage.getItem('token') || ''
 
-  if (userToken === '') {
-    console.log('Token not found in localStorage')
-  }
-  // console.log({ token: userToken })
+  const userToken = localStorage.getItem('token')
 
-  const axiosFetch = async (authToken) =>
-    await axios
-      .post(
-        '/api/current-user',
-        {},
-        {
-          headers: { authToken },
-        }
-      )
-      .then((result) => {
-        // console.log(result)
-        dispatch(
-          login({
-            username: result.data.username,
-            role: result.data.role,
-            token: authToken,
-          })
+  if (userToken === null) {
+    console.log('Token not found')
+  } else {
+    const axiosFetch = (authToken) =>
+      axios
+        .post(
+          '/api/current-user',
+          {},
+          {
+            headers: { authToken },
+          }
         )
-      })
-      .catch((err) => console.log(err))
+        .then((result) => {
+          // console.log(result)
+          dispatch(
+            login({
+              username: result.data.username,
+              role: result.data.role,
+              token: authToken,
+            })
+          )
+        })
+        .catch((err) => alert(err))
 
-  axiosFetch(userToken)
+    axiosFetch(userToken)
+  }
+  //  console.log({ token: userToken })
 
   return (
     <React.Fragment>
