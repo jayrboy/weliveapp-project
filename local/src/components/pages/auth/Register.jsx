@@ -1,12 +1,15 @@
-import Button from '@mui/material/Button'
-import Paper from '@mui/material/Paper'
-import CssBaseline from '@mui/material/CssBaseline'
-import TextField from '@mui/material/TextField'
-import Link from '@mui/material/Link'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
+import {
+  Button,
+  Paper,
+  CssBaseline,
+  TextField,
+  Box,
+  Grid,
+  Typography,
+} from '@mui/material'
+
 import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -17,7 +20,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="/">
+      <Link to="/" className="text-primary text-decoration-none">
         WE Live App
       </Link>{' '}
       {new Date().getFullYear()}
@@ -27,6 +30,8 @@ function Copyright(props) {
 }
 
 export default function Register() {
+  const navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -42,6 +47,7 @@ export default function Register() {
         .post('/api/register', userData)
         .then((result) => {
           alert(result.data)
+          navigate('/login')
         })
         .catch((err) => alert(err.message))
     } else {

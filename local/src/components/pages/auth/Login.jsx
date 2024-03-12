@@ -1,17 +1,22 @@
-import Button from '@mui/material/Button'
-import Paper from '@mui/material/Paper'
-import CssBaseline from '@mui/material/CssBaseline'
-import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
-import Link from '@mui/material/Link'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
+import {
+  Button,
+  Paper,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Box,
+  Grid,
+  Typography,
+} from '@mui/material'
+
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../../../redux/userSlice'
+
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import { FaFacebook } from 'react-icons/fa'
 
 function Copyright(props) {
   return (
@@ -22,7 +27,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="/">
+      <Link to="/" className="text-primary text-decoration-none">
         WE Live App
       </Link>{' '}
       {new Date().getFullYear()}
@@ -64,8 +69,6 @@ export default function Login() {
           roleRedirect(result.data.payload.user.role)
         })
         .catch((err) => alert(err.message))
-    } else {
-      alert('กรุณากรอกข้อมูล')
     }
   }
 
@@ -76,6 +79,11 @@ export default function Login() {
     } else {
       navigate('/user/home')
     }
+  }
+
+  //TODO: Login Facebook
+  function responseFacebook(response) {
+    console.log(response)
   }
 
   return (
@@ -159,16 +167,36 @@ export default function Login() {
             >
               Login
             </Button>
+            {/* Facebook Login : autoLoad={true} login auto)*/}
+            <FacebookLogin
+              appId="268883909602018"
+              autoLoad={true}
+              scope="public_profile"
+              fields="name,email"
+              callback={responseFacebook}
+              render={(renderProps) => (
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mb: 2 }}
+                  onClick={renderProps.onClick}
+                  startIcon={<FaFacebook />}
+                >
+                  Login With Facebook
+                </Button>
+              )}
+            />
           </Box>
           {/* Footer */}
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link to="#" className="text-decoration-none">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/register" variant="body2">
+              <Link to="/register" className="text-decoration-none">
                 Register
               </Link>
             </Grid>
