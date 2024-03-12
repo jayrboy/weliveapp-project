@@ -40,6 +40,7 @@ export default function Login() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  //TODO: Login Main App
   const handleSubmit = (event) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -82,8 +83,24 @@ export default function Login() {
   }
 
   //TODO: Login Facebook
-  function responseFacebook(response) {
-    console.log(response)
+  async function responseFacebook(response) {
+    // console.log(response)
+
+    await axios
+      .post('/api/login-facebook', response)
+      .then((result) => {
+        // console.log(result)
+        dispatch(
+          login({
+            username: result.data.payload.user.username,
+            role: result.data.payload.user.role,
+            token: result.data.token,
+          })
+        )
+        localStorage.setItem('token', result.data.token)
+        roleRedirect(result.data.payload.user.role)
+      })
+      .catch((err) => alert(err))
   }
 
   return (
@@ -171,8 +188,9 @@ export default function Login() {
 
             <FacebookLogin
               appId="268883909602018"
-              autoLoad={true}
-              fields="name, email, picture"
+              autoLoad={false}
+              fields="name,email,picture"
+              scope="public_profile"
               callback={responseFacebook}
               render={(renderProps) => (
                 <Button

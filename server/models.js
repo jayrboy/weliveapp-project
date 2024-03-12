@@ -22,7 +22,7 @@ let productSchema = new mongoose.Schema({
 productSchema.plugin(paginate) //สำหรับแบ่งเพจ
 let Product = mongoose.model('Product', productSchema)
 
-//* User
+//* User Model
 const userSchema = mongoose.Schema(
   {
     username: String,
@@ -33,6 +33,9 @@ const userSchema = mongoose.Schema(
       type: String,
       default: 'user',
     },
+    name: String,
+    email: String,
+    picture: Array,
   },
   { timestamps: true }
 )

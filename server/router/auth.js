@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     // check user
-    const { username, password } = req.body || ''
+    const { username, password } = req.body
 
     let user = await User.findOneAndUpdate({ username }, { new: true })
 
@@ -61,6 +61,41 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.log({ message: error.message })
     res.status(500)
+  }
+})
+
+//TODO: Development
+router.post('/login-facebook', async (req, res) => {
+  try {
+    const { userID, name, email, picture } = req.body
+    let userData = {
+      username: userID || '',
+      name: name || '',
+      email: email || '',
+      picture: picture || '',
+    }
+
+    let user = await User.findOneAndUpdate({ username: userID }, { new: true })
+    if (user) {
+      console.log('User updated')
+    } else {
+      console.log('User saved:')
+      user = new User(userData)
+      await user.save()
+    }
+
+    let payload = {
+      user,
+    }
+
+    // generate toke
+    jwt.sign(payload, 'jwtsecret', { expiresIn: '1d' }, (err, token) => {
+      if (err) throw err
+      res.json({ token, payload })
+    })
+  } catch (err) {
+    console.log(err)
+    res.json({ token, payload })
   }
 })
 
