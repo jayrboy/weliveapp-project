@@ -36,6 +36,7 @@ import About from './components/pages/user/About'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { login } from './redux/userSlice'
+import ADCheckout from './components/pages/admin/ADcheckout'
 
 function App() {
   // TODO:
@@ -145,6 +146,15 @@ function App() {
           element={
             <AdminRoute>
               <HomeAdmin />
+            </AdminRoute>
+          }
+        />
+        {/* Admin */}
+        <Route
+          path="/admin/checkout"
+          element={
+            <AdminRoute>
+              <ADCheckout />
             </AdminRoute>
           }
         />

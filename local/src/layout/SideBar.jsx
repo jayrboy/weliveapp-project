@@ -4,6 +4,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 // icon
+import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined'
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
@@ -14,14 +15,14 @@ import DataObjectOutlinedIcon from '@mui/icons-material/DataObjectOutlined'
 import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined'
 import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined'
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
-import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
+
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined'
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined'
 import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined'
-import PersonIcon from '@mui/icons-material/Person'
+
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
-import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch'
+
 import StorefrontIcon from '@mui/icons-material/Storefront'
 
 const SideBar = () => {
@@ -135,6 +136,12 @@ const SideBar = () => {
                   onClick={() => navigate('/admin/express')}
                 >
                   ค่าขนส่ง
+                </MenuItem>
+                <MenuItem
+                  icon={<CallMissedOutgoingIcon />}
+                  onClick={() => navigate('/admin/checkout')}
+                >
+                  <span className=" ">เช็คเอาท์</span>
                 </MenuItem>
                 <MenuItem
                   icon={<PaidOutlinedIcon />}
