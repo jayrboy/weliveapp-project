@@ -2,17 +2,17 @@ import { Link } from 'react-router-dom'
 export default function ADexpress() {
   return (
     <>
-      <h3 className="text-start">
-        <Link to="/admin/home" className="  text-decoration-none">
+      <h3 className="text-start m-3">
+        <Link to="/admin/home" className="  text-decoration-none ">
           WE LIVE |
         </Link>{' '}
         <span className="text-success"> จัดการค่าขนส่ง </span>
       </h3>
-
-      <form className="relative flex-column px-2 mt-3 m-auto">
-        <div className=" my-6 flex-column d-md-grid bg-white p-4 overflow-y-visible  justify-content-around rounded-3">
-          <table className="table table-striped table-warning border-bottom border-2 ">
-            <thead className=" border-2 ">
+    <div className='card m-3'>
+      <form className="relative">
+        <div className=" m-3 ">
+          <table className=" table ">
+            <thead className=" table-head table-success">
               <tr>
                 <th className="text-center">ขนส่ง</th>
                 <th className="text-center">ค่าส่งเริ่มต้น</th>
@@ -25,7 +25,7 @@ export default function ADexpress() {
                 <th className="text-center">{}</th>
               </tr>
             </thead>
-            <tbody className=" bg-body bg-white text-center border-2 mt-3 justify-content-center ">
+            <tbody className="  ">
               <tr>
                 <th className="text-center">ค่าเริ่มต้น</th>
                 <th className="text-center">
@@ -187,6 +187,7 @@ export default function ADexpress() {
           </div>
         </div>
       </form>
+      </div>
     </>
   )
 }
