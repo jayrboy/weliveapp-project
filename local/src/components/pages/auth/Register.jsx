@@ -11,6 +11,8 @@ import {
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { toast } from 'react-toastify'
+
 function Copyright(props) {
   return (
     <Typography
@@ -32,7 +34,7 @@ function Copyright(props) {
 export default function Register() {
   const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const formEnt = Object.fromEntries(formData.entries())
@@ -43,15 +45,17 @@ export default function Register() {
         password: formData.get('password'),
       }
 
-      axios
-        .post('/api/register', userData)
-        .then((result) => {
-          alert(result.data)
+      axios.post('/api/register', userData).then((result) => {
+        // console.log(result.data)
+        if (result.data === 'User Already Exists!') {
+          toast.warning(result.data)
+        } else {
+          toast.success(result.data)
           navigate('/login')
-        })
-        .catch((err) => alert(err.message))
+        }
+      })
     } else {
-      alert('กรุณากรอกข้อมูล')
+      toast.error('กรุณากรอกข้อมูล')
     }
   }
 

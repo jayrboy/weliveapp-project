@@ -26,6 +26,7 @@ import ADSales from './components/pages/admin/ADSales'
 import ADSeacrh from './components/pages/admin/ADSearch'
 import SearchbyOrder from './components/pages/admin/SearchbyOrder'
 import ManageUser from './components/pages/ManageUser'
+import ADCheckout from './components/pages/admin/ADcheckout'
 
 import ResponsiveAppBar from './layout/ResponsiveAppBar'
 import USorder from './components/pages/user/USorder'
@@ -36,7 +37,9 @@ import About from './components/pages/user/About'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { login } from './redux/userSlice'
-import ADCheckout from './components/pages/admin/ADcheckout'
+
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   // TODO:
@@ -75,6 +78,7 @@ function App() {
   return (
     <React.Fragment>
       <CssBaseline />
+      <ToastContainer position="top-center" autoClose={1000} />
       {/* Public */}
 
       <Routes>

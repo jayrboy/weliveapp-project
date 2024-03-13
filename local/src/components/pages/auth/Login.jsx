@@ -18,6 +18,8 @@ import { login } from '../../../redux/userSlice'
 import { FacebookLogin } from 'facebook-login-react'
 import { FaFacebook } from 'react-icons/fa'
 
+import { toast } from 'react-toastify'
+
 function Copyright(props) {
   return (
     <Typography
@@ -55,8 +57,10 @@ export default function Login() {
       axios
         .post('/api/login', userData)
         .then((result) => {
-          console.log(result)
-          alert(result.data)
+          // console.log(result.data)
+          toast.success(
+            result.data.payload.user.username + ' login successfully'
+          )
           dispatch(
             login({
               username: result.data.payload.user.username,
@@ -69,7 +73,7 @@ export default function Login() {
           //TODO: remove comment, this redirect shouldn't need to be re-render from path login.
           roleRedirect(result.data.payload.user.role)
         })
-        .catch((err) => alert(err.message))
+        .catch((err) => toast.error(err.response.data))
     }
   }
 
@@ -90,6 +94,7 @@ export default function Login() {
       .post('/api/login-facebook', response)
       .then((result) => {
         // console.log(result)
+        toast.success(result.data.payload.user.name + ' login successfully')
         dispatch(
           login({
             username: result.data.payload.user.username,
