@@ -484,3 +484,35 @@ export const historySale = [
     },
   },
 ]
+export const checkoutDetail = [
+  {
+    from: {
+      OrderID: '4231',
+      Date: '21/11/2001',
+      FBName: 'Popthon Phankaowniew',
+      ExpressID: '1178645612TH',
+      CheckOutTime: 'พื้นที่ดึงข้อมูล ณ เวลาที่กดเช็คเอาท์',
+      WhoCheckOut: 'AdminAek',
+    },
+  },
+  {
+    from: {
+      OrderID: '3245',
+      Date: '23/11/2001',
+      FBName: 'Thapanan panyak',
+      ExpressID: '1251123412TH',
+      CheckOutTime: 'พื้นที่ดึงข้อมูล ณ เวลาที่กดเช็คเอาท์',
+      WhoCheckOut: 'AdminAek',
+    },
+  },
+  {
+    from: {
+      OrderID: '3245',
+      Date: '29/11/2001',
+      FBName: 'Demon Slayer eieiza2001',
+      ExpressID: '9531224435TH',
+      CheckOutTime: 'พื้นที่ดึงข้อมูล ณ เวลาที่กดเช็คเอาท์',
+      WhoCheckOut: 'AdminJay',
+    },
+  },
+]

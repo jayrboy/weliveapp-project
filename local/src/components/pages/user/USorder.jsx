@@ -54,10 +54,7 @@ export default function USorder() {
           </tbody>
         </table>
         <div className="text-center">
-          <button
-            onClick={() => navigate('api/user/invoice')}
-            className="text-white btn btn-success btn-sm"
-          >
+          <button className="text-white btn btn-success btn-sm">
             ชำระเงิน
           </button>
         </div>
