@@ -22,6 +22,17 @@ let productSchema = new mongoose.Schema({
 productSchema.plugin(paginate) //สำหรับแบ่งเพจ
 let Product = mongoose.model('Product', productSchema)
 
+//* Product Model
+let expressSchema = new mongoose.Schema({
+  exname: String,
+  fprice: Number,
+  sprice: Number,
+  maxprice: Number,
+  whenfprice: Number,
+  date_start: Date,
+})
+let ExpressModel = mongoose.model('ExpressModel', expressSchema)
+
 //* User Model
 const userSchema = mongoose.Schema(
   {
@@ -50,4 +61,4 @@ const commentSchema = new mongoose.Schema({
 })
 const Comment = mongoose.model('Comment', commentSchema)
 
-export { Product, Comment, User }
+export { Product, Comment, User, ExpressModel }
