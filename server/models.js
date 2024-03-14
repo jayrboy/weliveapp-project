@@ -7,7 +7,7 @@ mongoose
   .then(() => {
     console.log('MongoDB Connected!')
   })
-  .catch((e) => console.log({ message: e.message }))
+  .catch((e) => console.log({ message: 'Failed connection: ' + e }))
 
 //* Product Model
 let productSchema = new mongoose.Schema({
