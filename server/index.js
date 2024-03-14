@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 
 const app = express()
+app.disable('X-Powered-By')
 
 // Middleware
 app.use(morgan('dev'))
