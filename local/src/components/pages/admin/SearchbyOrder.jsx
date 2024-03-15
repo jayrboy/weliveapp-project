@@ -133,7 +133,9 @@ export default function SearchbyOrder() {
                       <th className="text-center ">
                         <select
                           id="myEx"
-                          onChange="SelectExpress()"
+                          onChange={() => {
+                            // SelectExpress
+                          }}
                           className="btn btn-sm btn-outline-primary"
                         >
                           <option>เลือกขนส่ง</option>

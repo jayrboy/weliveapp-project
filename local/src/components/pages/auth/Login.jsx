@@ -78,7 +78,7 @@ export default function Login() {
   }
 
   const roleRedirect = (role) => {
-    console.log(role)
+    // console.log(role)
     if (role === 'admin') {
       navigate('/admin/home')
     } else {
@@ -88,22 +88,25 @@ export default function Login() {
 
   //TODO: Login Facebook
   async function responseFacebook(response) {
-    console.log(response)
+    // console.log(response)
 
     await axios
       .post('/api/login-facebook', response)
       .then((result) => {
-        console.log(result)
+        // console.log(result.data)
         toast.success(result.data.payload.user.name + ' login successfully')
-        // dispatch(
-        //   login({
-        //     username: result.data.payload.user.username,
-        //     role: result.data.payload.user.role,
-        //     token: result.data.token,
-        //   })
-        // )
-        // localStorage.setItem('token', result.data.token)
-        // roleRedirect(result.data.payload.user.role)
+        dispatch(
+          login({
+            username: result.data.payload.user.username,
+            role: result.data.payload.user.role,
+            name: result.data.payload.user.name,
+            email: result.data.payload.user.email,
+            picture: result.data.payload.user.picture,
+            token: result.data.token,
+          })
+        )
+        localStorage.setItem('token', result.data.token)
+        roleRedirect(result.data.payload.user.role)
       })
       .catch((err) => alert(err))
   }

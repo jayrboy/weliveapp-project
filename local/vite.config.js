@@ -8,9 +8,9 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:8000',
     },
-    https: {
-      key: './private.key',
-      cert: './certificate.crt',
-    },
+    // https: {
+    //   key: './private.key',
+    //   cert: './certificate.crt',
+    // },
   },
 })

@@ -9,12 +9,13 @@ import NotFound from '../components/pages/NotFound'
 const AdminRoute = ({ children }) => {
   const { user } = useSelector((state) => state.user)
   // console.log('AdminRoute', user)
-  // console.log('AdminRoute', user.user.token)
+  // console.log('AdminRoute', user.token)
 
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (user.token) {
+      console.log(user)
       axiosFetch(user.token)
     }
   }, [user])

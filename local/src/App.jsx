@@ -68,6 +68,9 @@ function App() {
             login({
               username: result.data.username,
               role: result.data.role,
+              name: result.data.name,
+              email: result.data.email,
+              picture: result.data.picture,
               token: authToken,
             })
           )

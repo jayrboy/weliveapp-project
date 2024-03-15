@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { productlist } from '../../../data'
+import { productList } from '../../../data'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import DeleteIcon from '@mui/icons-material/Delete'
 
@@ -29,7 +29,7 @@ export default function USorder() {
           </thead>
 
           <tbody className="table-group-divider">
-            {productlist.map((product) => {
+            {productList.map((product) => {
               // คำนวณค่า itempr * among - discount
 
               return (

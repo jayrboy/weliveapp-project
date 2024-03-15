@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import MyComponent from '../../../assets/date'
-import { orderdetail } from '../../../data'
+import { orderDetail } from '../../../data'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,11 +22,14 @@ export default function USinvoice() {
         <span className=" text-success ms-2">| ชำระสินค้า</span>
       </h3>
       <div className="m-2">
-        {orderdetail.map((detail, i) => {
+        {orderDetail.map((detail, i) => {
           // if (detail.from.fbName == 'Wittaya R.')
           // ใช้ในการกำหนด ให้ชื่อ user ตรงกับออเดอร์เท่านั้นถึงจะโชว์ให้จ่ายเงิน
           return (
-            <div className="card card-header mb-3 bg-warning bg-opacity-75 ">
+            <div
+              key={detail.id}
+              className="card card-header mb-3 bg-warning bg-opacity-75 "
+            >
               <Box sx={{ flexGrow: 1 }} className="m-3">
                 <Grid container spacing={3} key={detail.id}>
                   <Grid item xs={2}>

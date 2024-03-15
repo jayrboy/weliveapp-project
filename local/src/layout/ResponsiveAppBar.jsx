@@ -75,7 +75,8 @@ const settings = [
 const ResponsiveAppBar = () => {
   const { user } = useSelector((state) => state.user)
   // console.log('ResponsiveAppBar', user)
-  // console.log(user.length)
+  // console.log('profile_picture', user.picture[0].data.url)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -273,8 +274,8 @@ const ResponsiveAppBar = () => {
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt="Remy Sharp"
-                    src="https://scontent.fbkk28-1.fna.fbcdn.net/v/t39.30808-6/335067748_943378343326998_4474839827127937759_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=jqDD669fFaUAX8cGjto&_nc_ht=scontent.fbkk28-1.fna&oh=00_AfCXJXR1cswq7IGnhaUbM-8lmCAl160MyOk6Eq3sVV-C-g&oe=65F527A1"
+                    alt="profile_picture"
+                    src={user.picture[0].data.url}
                   />
                 </IconButton>
               </Tooltip>

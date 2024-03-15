@@ -56,7 +56,7 @@ export default function ADCheckout() {
                 // คำนวณค่า itempr * among - discount
 
                 return (
-                  <tr key={checkout.id} className=" text-center">
+                  <tr key={checkout.from.id} className=" text-center">
                     <td>{i + 1}</td>
                     <td>{checkout.from.OrderID}</td>
                     <td>{checkout.from.Date}</td>

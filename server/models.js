@@ -22,7 +22,7 @@ let productSchema = new mongoose.Schema({
 productSchema.plugin(paginate) //สำหรับแบ่งเพจ
 let Product = mongoose.model('Product', productSchema)
 
-//* Product Model
+//* Express Model
 let expressSchema = new mongoose.Schema({
   exname: String,
   fprice: Number,
