@@ -88,22 +88,22 @@ export default function Login() {
 
   //TODO: Login Facebook
   async function responseFacebook(response) {
-    // console.log(response)
+    console.log(response)
 
     await axios
       .post('/api/login-facebook', response)
       .then((result) => {
-        // console.log(result)
+        console.log(result)
         toast.success(result.data.payload.user.name + ' login successfully')
-        dispatch(
-          login({
-            username: result.data.payload.user.username,
-            role: result.data.payload.user.role,
-            token: result.data.token,
-          })
-        )
-        localStorage.setItem('token', result.data.token)
-        roleRedirect(result.data.payload.user.role)
+        // dispatch(
+        //   login({
+        //     username: result.data.payload.user.username,
+        //     role: result.data.payload.user.role,
+        //     token: result.data.token,
+        //   })
+        // )
+        // localStorage.setItem('token', result.data.token)
+        // roleRedirect(result.data.payload.user.role)
       })
       .catch((err) => alert(err))
   }
@@ -193,9 +193,9 @@ export default function Login() {
 
             <FacebookLogin
               appId="268883909602018"
-              version="19.0"
-              xfbml={true}
-              cookie={true}
+              // version="19.0"
+              // xfbml={true}
+              // cookie={true}
               autoLoad={false}
               fields="name,email,picture"
               scope="public_profile"

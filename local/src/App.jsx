@@ -21,7 +21,7 @@ import DBCart from './components/pages/admin/DBCart'
 import DBOrder from './components/pages/admin/DBOrder'
 import DBCFCode from './components/pages/admin/DBCFCode'
 import ADinvoice from './components/pages/admin/ADinvoice'
-import ADexpress from './components/pages/admin/ADexpress'
+import ADexpress from './components/pages/admin/EXcreate'
 import ADSales from './components/pages/admin/ADSales'
 import ADSeacrh from './components/pages/admin/ADSearch'
 import SearchbyOrder from './components/pages/admin/SearchbyOrder'
@@ -40,6 +40,9 @@ import { login } from './redux/userSlice'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import EXcreate from './components/pages/admin/EXcreate'
+import EXupdate from './components/pages/admin/EXupdate'
+import EXdelete from './components/pages/admin/EXdelete'
 
 function App() {
   // TODO:
@@ -242,14 +245,7 @@ function App() {
             </AdminRoute>
           }
         />
-        <Route
-          path="/admin/express"
-          element={
-            <AdminRoute>
-              <ADexpress />
-            </AdminRoute>
-          }
-        />
+
         <Route
           path="/admin/sales"
           element={
@@ -263,6 +259,30 @@ function App() {
           element={
             <AdminRoute>
               <ADSeacrh />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/exupdate"
+          element={
+            <AdminRoute>
+              <EXupdate />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/excreate"
+          element={
+            <AdminRoute>
+              <EXcreate />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/exdelete"
+          element={
+            <AdminRoute>
+              <EXdelete />
             </AdminRoute>
           }
         />

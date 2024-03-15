@@ -133,9 +133,9 @@ const SideBar = () => {
                 </MenuItem>
                 <MenuItem
                   icon={<SettingsSuggestOutlinedIcon />}
-                  onClick={() => navigate('/admin/express')}
+                  onClick={() => navigate('/admin/exupdate')}
                 >
-                  ค่าขนส่ง
+                  ตั้งค่าราคาขนส่ง
                 </MenuItem>
                 <MenuItem
                   icon={<CallMissedOutgoingIcon />}
