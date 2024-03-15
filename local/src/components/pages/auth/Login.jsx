@@ -43,7 +43,7 @@ export default function Login() {
   const dispatch = useDispatch()
 
   //TODO: Login Main App
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const formEnt = Object.fromEntries(formData.entries())
@@ -54,7 +54,7 @@ export default function Login() {
         password: formData.get('password'),
       }
 
-      axios
+      await axios
         .post('/api/login', userData)
         .then((result) => {
           // console.log(result.data)
@@ -65,6 +65,7 @@ export default function Login() {
             login({
               username: result.data.payload.user.username,
               role: result.data.payload.user.role,
+              picture: result.data.payload.user.picture,
               token: result.data.token,
             })
           )

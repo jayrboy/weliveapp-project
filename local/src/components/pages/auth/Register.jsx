@@ -45,7 +45,7 @@ export default function Register() {
         password: formData.get('password'),
       }
 
-      axios.post('/api/register', userData).then((result) => {
+      await axios.post('/api/register', userData).then((result) => {
         // console.log(result.data)
         if (result.data === 'User Already Exists!') {
           toast.warning(result.data)

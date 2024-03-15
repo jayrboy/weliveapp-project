@@ -47,6 +47,9 @@ router.post('/login', async (req, res) => {
       let payload = {
         user: {
           username: user.username,
+          name: user.name,
+          email: user.email,
+          picture: user.picture,
           role: user.role,
         },
       }
@@ -69,10 +72,10 @@ router.post('/login-facebook', async (req, res) => {
   try {
     const { userID, name, email, picture } = req.body
     let userData = {
-      username: userID || '',
-      name: name || '',
-      email: email || '',
-      picture: picture || '',
+      username: userID,
+      name: name,
+      email: email,
+      picture: picture,
     }
 
     let user = await User.findOneAndUpdate({ username: userID }, { new: true })
@@ -106,7 +109,7 @@ router.post('/current-user', auth, (req, res) => {
     .exec()
     .then((docs) => res.send(docs))
     .catch((err) => {
-      console.log({ message: err.message })
+      console.log({ message: err })
       res.status(500).send('Server Error')
     })
 })
@@ -118,7 +121,7 @@ router.post('/current-admin', auth, adminCheck, (req, res) => {
     .exec()
     .then((docs) => res.send(docs))
     .catch((err) => {
-      console.log({ message: err.message })
+      console.log({ message: err })
       res.status(500).send('Server Error')
     })
 })

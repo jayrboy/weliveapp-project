@@ -36,17 +36,15 @@ let ExpressModel = mongoose.model('ExpressModel', expressSchema)
 //* User Model
 const userSchema = mongoose.Schema(
   {
-    username: String,
-    password: {
-      type: String,
-    },
-    role: {
-      type: String,
-      default: 'user',
-    },
+    username: { type: String, required: true },
+    password: String,
+    role: { type: String, default: 'user' },
     name: String,
     email: String,
-    picture: Array,
+    picture: {
+      type: Array,
+      default: [{ data: { url: 'no-image.jpg' } }],
+    },
   },
   { timestamps: true }
 )
