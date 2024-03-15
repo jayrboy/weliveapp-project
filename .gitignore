@@ -4,6 +4,7 @@
 local/node_modules
 local/certificate.crt
 local/private.key
+local/.env
 
 server/node_modules
 /.pnp

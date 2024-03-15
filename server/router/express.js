@@ -45,7 +45,7 @@ router.post('/ex/update', (req, res) => {
     date_start: new Date(Date.parse(form.date_start)) || new Date(),
   }
 
-  ExpressModel.findOneAndUpdate(form._id, data, { useFindAndModify: false })
+  ExpressModel.findByIdAndUpdate(form._id, data, { useFindAndModify: false })
     .exec()
     .then(() => {
       //หลังการอัปเดต ก็อ่านข้อมูลอีกครั้ง แล้วส่งไปแสดงผลที่ฝั่งโลคอลแทนข้อมูลเดิม
