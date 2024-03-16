@@ -3,12 +3,32 @@ import fs from 'fs'
 
 //TODO: Comments from Graph API
 
-const cfg = {
-  liveVideoID: process.env.LIVE_VIDEO_ID || 1812838522556544,
+let cfg = {
+  liveVideoID: null,
   accessToken:
     process.env.ACCESS_TOKEN ||
-    'EAAQi1tOQCP4BO8tewOoV8RlLCOI8BruOxLbUbUdrFYKAgdMGYFDhGh5ZAJyooEwjKTwZA9mgLXIZBifxZC8qrfSFcZBCX3SnzCKFfinAsbrsiAeZAAIfSjlZA2At1ipIpZAfgXokzGT8ss0Oi2alntXQTeZCdOSGicy1tgKjc7E1DHDO9ZC3u5ktnAkmlrrD7FpjeEuWd1Vg0yZBAs1HXD8L3V19qvZBcHTZAYa2dl8yxWvud0jOOwPxCCpLLZB2VgjYitXgEZC7FdvbwZDZD',
+    'EAAQi1tOQCP4BO6YQv9AJYuRMCj2XBQaTYCuChQYkfaEO8UGlB5tIEhpiACxnBquSsZAVkV4qSICDTVo7vL3DwSr9kyQzTc1V67XaCV3i0afMEGj8JE1ZChaBgnZASyHgGgMQj43NCQKo0K9LSKJiu4WmUPpyBdQbDb24W1SrczFathZBCu3VTBmUuKJzYZBOJ4GaDGzzyqS80jMZAhJs3fZCBpvtVMikcsMj7FZBtEyneV0AodTSc59TivnRITTobDiEdRlnKQZDZD',
 }
+
+async function getLiveVideoID() {
+  const url = `http://graph.facebook.com/v19.0/me/live_videos`
+  const params = {
+    fields: 'status,permalink_url',
+    access_token: cfg.accessToken,
+  }
+
+  const response = await axios.get(url, { params })
+  let liveVideo = response.data.data[0]
+
+  if (liveVideo.status === 'LIVE') {
+    let video_url = liveVideo.permalink_url.split('/')
+    cfg.liveVideoID = video_url[video_url.length - 1]
+  }
+
+  return cfg.liveVideoID
+}
+
+getLiveVideoID()
 
 async function getCommentAPI() {
   let url = `https://graph.facebook.com/v19.0/${cfg.liveVideoID}/comments`
@@ -25,7 +45,7 @@ async function getCommentAPI() {
 }
 
 //TODO: ฟังก์ชันอ่านเฉพาะ comment ใหม่
-/* 
+/*
   วนลูป newComment ใหม่ที่ได้มา แล้วตรวจสอบ newComment ว่ามี oldComment หรือไม่
   หากไม่เจอ newComment ใน oldComment ก็ให้แสดงค่า newComment ใหม่
   หากทำงานเสร็จสิ้น ส่ง newComment ใหม่
@@ -35,7 +55,8 @@ async function latestComment(oldComment, newComment) {
     newComment.forEach((comment) => {
       if (!oldComment.find((cm) => cm.id == comment.id)) {
         writeFileCSV(comment)
-        console.log('This is a new comment', comment)
+        // this is a new comment
+        console.log(comment)
       }
     })
     resolve(newComment)
@@ -43,7 +64,7 @@ async function latestComment(oldComment, newComment) {
 }
 
 //TODO: บันทึกไฟล์ .csv ลูกค้าที่สั่งซื้อสินค้าตามรหัส code
-/* 
+/*
   ตรวจสอบ comment ที่ขึ้นต้นด้วย "รหัสสินค้า" ที่กำหนดไว้ หากตรงกันจริง
   จะทำการเขียนข้อมูลลงในไฟล์ CSV ในรูปแบบของตาราง rows, columns
   และใช้ fs.appendFileSync() โดยเขียนข้อมูลเข้าไปแทรกในข้อมูลที่มีอยู่แล้วในไฟล์
