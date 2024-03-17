@@ -7,7 +7,7 @@ let cfg = {
   liveVideoID: null,
   accessToken:
     process.env.ACCESS_TOKEN ||
-    'EAAQi1tOQCP4BO6YQv9AJYuRMCj2XBQaTYCuChQYkfaEO8UGlB5tIEhpiACxnBquSsZAVkV4qSICDTVo7vL3DwSr9kyQzTc1V67XaCV3i0afMEGj8JE1ZChaBgnZASyHgGgMQj43NCQKo0K9LSKJiu4WmUPpyBdQbDb24W1SrczFathZBCu3VTBmUuKJzYZBOJ4GaDGzzyqS80jMZAhJs3fZCBpvtVMikcsMj7FZBtEyneV0AodTSc59TivnRITTobDiEdRlnKQZDZD',
+    'EAAQi1tOQCP4BOwbZCvW1ZBAOOgxunGq9KkdG6YHvA43xqCL0frZATO0gWznSHfkQnhFqpyLurZCfNBPQXGpCZBqI1MeGHIBbruL7L4mEUffQNhQze0rifPYkwfa2k1mZCuacVdQZBIn4qNuMDnZCoVGriuR8HoviK3TXO2rVSmHxdvJVxjPSOGl6vWOWoUZAkVI2VJon83r5TB8SjZAqpZCafIH10pbFbclDDbynOfjsfpoZAb7Tyr8lBSqSJu3c8dYOXwWuZAfvZAVgZDZD',
 }
 
 async function getLiveVideoID() {
@@ -28,7 +28,7 @@ async function getLiveVideoID() {
   return cfg.liveVideoID
 }
 
-getLiveVideoID()
+// getLiveVideoID()
 
 async function getCommentAPI() {
   let url = `https://graph.facebook.com/v19.0/${cfg.liveVideoID}/comments`
@@ -47,13 +47,13 @@ async function getCommentAPI() {
 //TODO: ฟังก์ชันอ่านเฉพาะ comment ใหม่
 /*
   วนลูป newComment ใหม่ที่ได้มา แล้วตรวจสอบ newComment ว่ามี oldComment หรือไม่
-  หากไม่เจอ newComment ใน oldComment ก็ให้แสดงค่า newComment ใหม่
+  id oldComment ไม่ตรงกับ id ของ newComment เท่ากับ newComment ใหม่
   หากทำงานเสร็จสิ้น ส่ง newComment ใหม่
 */
 async function latestComment(oldComment, newComment) {
   return new Promise((resolve) => {
     newComment.forEach((comment) => {
-      if (!oldComment.find((cm) => cm.id == comment.id)) {
+      if (oldComment.find((cm) => cm.id != comment.id)) {
         writeFileCSV(comment)
         // this is a new comment
         console.log(comment)
@@ -69,7 +69,7 @@ async function latestComment(oldComment, newComment) {
   จะทำการเขียนข้อมูลลงในไฟล์ CSV ในรูปแบบของตาราง rows, columns
   และใช้ fs.appendFileSync() โดยเขียนข้อมูลเข้าไปแทรกในข้อมูลที่มีอยู่แล้วในไฟล์
 */
-let code = 'A=1'
+let code = 'A'
 const fileCSV = 'customer.csv'
 
 function writeFileCSV(comment) {
@@ -115,4 +115,4 @@ export async function getComment() {
   }, 10000)
 }
 
-getComment()
+// getComment()
