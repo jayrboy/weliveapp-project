@@ -1,19 +1,23 @@
 import logo from '../assets/logo-we.png'
 
 import { useState } from 'react'
-import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material'
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
+import { Link } from 'react-router-dom'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material'
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
+import { RiLiveFill } from 'react-icons/ri'
+
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../redux/userSlice'
 
-const HeaderBar = () => {
-  const { user } = useSelector((state) => state.user)
+import { openModal } from '../redux/liveVideoModalSlice'
+
+export default function HeaderBar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  let [firstLoad, setFirstLoad] = useState(false)
 
   const onClickLogout = () => {
     dispatch(logout())
@@ -51,11 +55,14 @@ const HeaderBar = () => {
 
       {/* icons */}
       <Box display="flex">
-        <IconButton>
-          <NotificationsOutlinedIcon />
+        <IconButton onClick={() => dispatch(openModal())}>
+          {firstLoad ? <RiLiveFill color="red" /> : <RiLiveFill color="grey" />}
         </IconButton>
         <IconButton>
-          <SettingsOutlinedIcon />
+          <CartIcon />
+          <div className="amount-container">
+            <p className="total-amount">{'0'}</p>
+          </div>
         </IconButton>
         <IconButton onClick={handleMenu}>
           <PersonOutlinedIcon />
@@ -86,4 +93,22 @@ const HeaderBar = () => {
   )
 }
 
-export default HeaderBar
+export const CartIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 "
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+      width="25px"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+      />
+    </svg>
+  )
+}

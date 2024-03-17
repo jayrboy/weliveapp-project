@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import NotFound from '../components/pages/NotFound'
+import LiveVideoModal from '../layout/LiveVideoModal'
 
 const AdminRoute = ({ children }) => {
   const { user } = useSelector((state) => state.user)
@@ -12,6 +13,8 @@ const AdminRoute = ({ children }) => {
   // console.log('AdminRoute', user.token)
 
   const [loading, setLoading] = useState(false)
+
+  const { isOpen } = useSelector((state) => state.livevideomodal)
 
   useEffect(() => {
     if (user.token) {
@@ -43,6 +46,7 @@ const AdminRoute = ({ children }) => {
     <div className="app">
       <SideBar />
       <main className="content">
+        {isOpen && <LiveVideoModal />}
         <HeaderBar />
         <div className="content_body">
           <Box>{children}</Box>
