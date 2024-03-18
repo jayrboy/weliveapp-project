@@ -1,6 +1,6 @@
 import logo from '../assets/logo-we.png'
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material'
@@ -12,12 +12,13 @@ import { useNavigate } from 'react-router-dom'
 import { logout } from '../redux/userSlice'
 
 import { openModal } from '../redux/liveVideoModalSlice'
+import { firstLoadContext } from '../routes/AdminRoute'
 
 export default function HeaderBar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  let [firstLoad, setFirstLoad] = useState(false)
+  let [firstLoad, setFirstLoad] = useContext(firstLoadContext)
 
   const onClickLogout = () => {
     dispatch(logout())

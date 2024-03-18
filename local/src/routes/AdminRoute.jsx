@@ -1,11 +1,13 @@
 import { Box } from '@mui/material'
 import SideBar from '../layout/SideBar'
 import HeaderBar from '../layout/HeaderBar'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, createContext } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import NotFound from '../components/pages/NotFound'
 import LiveVideoModal from '../layout/LiveVideoModal'
+
+export const firstLoadContext = createContext()
 
 const AdminRoute = ({ children }) => {
   const { user } = useSelector((state) => state.user)
@@ -15,6 +17,7 @@ const AdminRoute = ({ children }) => {
   const [loading, setLoading] = useState(false)
 
   const { isOpen } = useSelector((state) => state.livevideomodal)
+  let [firstLoad, setFirstLoad] = useState(false)
 
   useEffect(() => {
     if (user.token) {
@@ -43,16 +46,18 @@ const AdminRoute = ({ children }) => {
       })
 
   return loading ? (
-    <div className="app">
-      <SideBar />
-      <main className="content">
-        {isOpen && <LiveVideoModal />}
-        <HeaderBar />
-        <div className="content_body">
-          <Box>{children}</Box>
-        </div>
-      </main>
-    </div>
+    <firstLoadContext.Provider value={[firstLoad, setFirstLoad]}>
+      <div className="app">
+        <SideBar />
+        <main className="content">
+          {isOpen && <LiveVideoModal />}
+          <HeaderBar />
+          <div className="content_body">
+            <Box>{children}</Box>
+          </div>
+        </main>
+      </div>
+    </firstLoadContext.Provider>
   ) : (
     <NotFound text="Admin No Permission" />
   )
