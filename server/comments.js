@@ -11,7 +11,7 @@ let cfg = {
 }
 
 async function getLiveVideoID() {
-  const url = `http://graph.facebook.com/v19.0/me/live_videos`
+  const url = `https://graph.facebook.com/v19.0/me/live_videos`
   const params = {
     fields: 'status,permalink_url',
     access_token: cfg.accessToken,
