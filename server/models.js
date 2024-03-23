@@ -3,7 +3,7 @@ import paginate from 'mongoose-paginate-v2' //สำหรับแบ่งเ�
 
 //* Connection
 mongoose
-  .connect('mongodb://localhost/db1')
+  .connect(process.env.ROOT_MONGO_DB)
   .then(() => {
     console.log('MongoDB Connected!')
   })
